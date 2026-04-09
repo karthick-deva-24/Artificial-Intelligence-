@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Stackly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dashboard { min-height: 100vh; padding: 120px 2rem 2rem; background: radial-gradient(circle at top right, rgba(138, 125, 250, 0.1), transparent); }
+        .sidebar { background: rgba(138, 125, 250, 0.03); border-right: 1px solid var(--border-color); width: 260px; height: 100vh; position: fixed; top: 0; left: 0; padding: 120px 1.5rem 2rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .dashboard-content { margin-left: 280px; }
+        .stat-card { padding: 2.5rem; text-align: center; border-radius: 24px; transition: 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .active-link { color: var(--primary) !important; font-weight: 700; border-left: 3px solid var(--primary); padding-left: 1rem; }
+
+        /* Identity Profile Header Implementation */
+        .header-identity { display: flex; align-items: center; gap: 1.5rem; }
+        .identity-avatar { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.4rem; }
+
+        .identity-meta { text-align: left; line-height: 1.3; }
+        .identity-email { font-weight: 700; color: var(--text-main); font-size: 1.05rem; display: block; }
+        .identity-role { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; display: block; }
+        .sidebar-link:hover { background: rgba(138, 125, 250, 0.08); color: var(--primary) !important; transform: translateX(5px); }
+        .sidebar-link { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .identity-logout { display: flex; align-items: center; gap: 0.6rem; border: 1.5px solid var(--primary); color: var(--primary); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
+        .identity-logout:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+
+    <!-- Premium Preloader -->
+    <div id="preloader">
+            <div class="loader-signal-container">
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-core">
+                    <img src="assets/stackly jpg.webp" alt="Loading" class="loader-logo logo-img">
+                </div>
+            </div>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <div class="loader-text">Securing Access</div>
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">
+                <a href="admin-dashboard.html">
+                    <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
+                </a>
+                <button class="menu-toggle" id="dashboard-menu-btn" style="margin-left: 1.5rem;"><i class="fa-solid fa-bars"></i></button>
+            </div>
+            
+            <!-- User Identity Section (As requested) -->
+            <div class="header-identity">
+                <div class="identity-avatar">
+                   <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+                <div class="identity-meta">
+                    <span class="identity-email" id="admin-email-display">admin@stackly.ai</span>
+                    <span class="identity-role" id="admin-role-display">Admin</span>
+                </div>
+                <a href="login.html" class="identity-logout" onclick="localStorage.clear()">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    Logout
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <aside class="sidebar">
+        <div style="margin-bottom: 2.5rem; padding-left: 1rem;">
+            <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); font-weight: 700;">System Admin</span>
+        </div>
+        <ul style="list-style: none;">
+            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link active-link" data-target="admin-overview" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--primary); background: rgba(138, 125, 250, 0.05); font-weight: 600;">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                Global Overview</a>
+            </li>
+            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="user-database" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                User Database</a>
+            </li>
+            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="model-registry" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                Model Registry</a>
+            </li>
+            <li style="margin-bottom: 2rem;"><a href="#" class="sidebar-link" data-target="node-management" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                Node Management</a>
+            </li>
+
+            <div style="margin: 2rem 0 1rem; padding-left: 1rem;">
+                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); font-weight: 700;">Infrastructure</span>
+            </div>
+            
+            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="health-monitor" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                Health Monitor</a>
+            </li>
+            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="financial-audit" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                Financial Audit</a>
+            </li>
+            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="security-protocols" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Security Protocols</a>
+            </li>
+            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="system-config" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                System Config</a>
+            </li>
+        </ul>
+    </aside>
+
+    <main class="dashboard">
+        <div class="dashboard-content container" id="admin-overview">
+            <h1 class="reveal">Command <span class="gradient-text">Centre</span></h1>
+            <p style="margin-top: 1.5rem; color: var(--text-muted);">Comprehensive real-time monitoring of all global neural clusters and decentralized AI nodes.</p>
+
+            <div class="grid-3" style="margin-top: 3rem;">
+                <div class="glass-panel stat-card reveal">
+                    <h3 style="color: var(--primary);">Cluster Uptime</h3>
+                    <div style="font-size: 3rem; font-weight: 800; margin: 1rem 0;" class="gradient-text">99.98%</div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Global Availability Stable</p>
+                </div>
+            </div>
+
+            <div class="glass-panel reveal" style="margin-top: 3rem; padding: 4rem; position: relative; overflow: hidden; background: radial-gradient(circle at bottom left, rgba(138, 125, 250, 0.05), transparent);">
+                <div style="position: absolute; top: 1.5rem; right: 2rem;"><span class="badge" style="background: rgba(138, 125, 250, 0.1); color: var(--primary); font-size: 0.7rem;">SYSTEM HEALTH: NOMINAL</span></div>
+                <h3 style="margin-bottom: 2rem;">Active Resource Monitor</h3>
+                <div style="border: 1px solid var(--border-color); padding: 2rem; border-radius: 20px; background: rgba(255,255,255,0.01);">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">NVIDIA H100 Cluster - Paris</h4>
+                    <div style="width: 100%; height: 6px; background: rgba(138, 125, 250, 0.1); border-radius: 10px; margin-top: 1rem;">
+                        <div style="width: 74%; height: 100%; background: var(--primary); border-radius: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden Sections for Admin Navigation -->
+        <div class="dashboard-content container" id="user-database" style="display: none;">
+            <h2 class="gradient-text">User Database</h2>
+            <div class="glass-panel no-scrollbar" style="padding: 2rem; margin-top: 2rem; overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; min-width: 600px;">
+                    <thead>
+                        <tr style="text-align: left; border-bottom: 1px solid var(--border-color); color: var(--primary);">
+                            <th style="padding: 1rem;">User ID</th>
+                            <th style="padding: 1rem;">Email</th>
+                            <th style="padding: 1rem;">Status</th>
+                            <th style="padding: 1rem;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 1rem;">#US-20241</td>
+                            <td style="padding: 1rem;">karthick@example.ai</td>
+                            <td style="padding: 1rem;"><span class="badge" style="background: rgba(78, 205, 196, 0.1); color: #4ecdc4;">Active</span></td>
+                            <td style="padding: 1rem;"><button class="btn-text" style="color: var(--primary);" onclick="window.location.href='404.html'">Manage</button></td>
+                        </tr>
+                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 1rem;">#US-20242</td>
+                            <td style="padding: 1rem;">dev@stackly.ai</td>
+                            <td style="padding: 1rem;"><span class="badge" style="background: rgba(78, 205, 196, 0.1); color: #4ecdc4;">Active</span></td>
+                            <td style="padding: 1rem;"><button class="btn-text" style="color: var(--primary);" onclick="window.location.href='404.html'">Manage</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="dashboard-content container" id="model-registry" style="display: none;">
+            <h2 class="gradient-text">Model Registry</h2>
+            <div class="grid-2" style="margin-top: 2rem;">
+                <div class="glass-panel" style="padding: 2rem; border-left: 4px solid #4ecdc4;">
+                    <h3>Flux-Core 2.1</h3>
+                    <p style="color: var(--text-muted);">Current Stable Release</p>
+                    <div style="margin-top: 1rem;"><span class="badge">Production</span></div>
+                </div>
+                <div class="glass-panel" style="padding: 2rem; border-left: 4px solid var(--primary);">
+                    <h3>Neural Vision Alpha</h3>
+                    <p style="color: var(--text-muted);">Internal Beta Testing</p>
+                    <div style="margin-top: 1rem;"><span class="badge">Staging</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content container" id="node-management" style="display: none;">
+            <h2 class="gradient-text">Node Management</h2>
+            <div class="glass-panel" style="padding: 3rem; margin-top: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h4>Global Cluster Map</h4>
+                    <div style="display: flex; gap: 1.5rem; align-items: center;">
+                        <span style="color: #4ecdc4; font-size: 0.85rem; font-weight: 600;"><span class="pulse-dot"></span> 12 Nodes Online</span>
+                        <span style="color: var(--primary); font-size: 0.85rem; font-weight: 600;">System Load: 24%</span>
+                    </div>
+                </div>
+                
+                <div class="visualization-container" style="height: 350px; background: radial-gradient(circle at center, rgba(138, 125, 250, 0.05), transparent); border-radius: 20px; border: 1px solid var(--border-color); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <!-- Neural Cluster Visualization -->
+                    <svg viewBox="0 0 800 400" style="width: 100%; height: 100%;">
+                        <defs>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:var(--primary);stop-opacity:0" />
+                                <stop offset="50%" style="stop-color:var(--primary);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:var(--primary);stop-opacity:0" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Connecting Lines with Dash Animation -->
+                        <g stroke="var(--primary)" stroke-width="0.5" opacity="0.2">
+                            <line x1="200" y1="100" x2="400" y2="200" />
+                            <line x1="600" y1="100" x2="400" y2="200" />
+                            <line x1="300" y1="300" x2="400" y2="200" />
+                            <line x1="500" y1="300" x2="400" y2="200" />
+                            <line x1="200" y1="100" x2="600" y2="100" />
+                            <line x1="300" y1="300" x2="500" y2="300" />
+                        </g>
+
+                        <!-- Animated Data Flow -->
+                        <circle r="2" fill="var(--primary)" filter="url(#glow)">
+                            <animateMotion dur="3s" repeatCount="indefinite" path="M 200 100 L 400 200" />
+                        </circle>
+                        <circle r="2" fill="#4ecdc4" filter="url(#glow)">
+                            <animateMotion dur="4s" repeatCount="indefinite" path="M 600 100 L 400 200" />
+                        </circle>
+                        <circle r="2" fill="var(--primary)" filter="url(#glow)">
+                            <animateMotion dur="2.5s" repeatCount="indefinite" path="M 400 200 L 300 300" />
+                        </circle>
+
+                        <!-- Central Core -->
+                        <g class="float-ui">
+                            <circle cx="400" cy="200" r="40" fill="rgba(138, 125, 250, 0.1)" stroke="var(--primary)" stroke-width="1" filter="url(#glow)" />
+                            <circle cx="400" cy="200" r="25" fill="var(--primary)" opacity="0.2">
+                                <animate attributeName="r" values="25;30;25" dur="3s" repeatCount="indefinite" />
+                            </circle>
+                            <path d="M 385 200 L 415 200 M 400 185 L 400 215" stroke="var(--primary)" stroke-width="2" />
+                        </g>
+
+                        <!-- Peripheral Nodes -->
+                        <g filter="url(#glow)">
+                            <circle cx="200" cy="100" r="8" fill="#4ecdc4" class="pulse-node" />
+                            <circle cx="600" cy="100" r="8" fill="var(--primary)" class="pulse-node" />
+                            <circle cx="300" cy="300" r="8" fill="var(--primary)" class="pulse-node" />
+                            <circle cx="500" cy="300" r="8" fill="#ff6b6b" class="pulse-node" />
+                        </g>
+                    </svg>
+
+                    <!-- Overlay Data -->
+                    <div style="position: absolute; bottom: 20px; left: 20px; font-family: monospace; font-size: 0.7rem; color: var(--text-muted); line-height: 1.5;">
+                        <div>NODE_ID: SF-GP-01</div>
+                        <div>LATENCY: 14ms</div>
+                        <div>UPTIME: 99.9%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content container" id="health-monitor" style="display: none;">
+            <h2 class="gradient-text">AI Health Monitor</h2>
+            <div class="glass-panel" style="padding: 3rem; margin-top: 2rem;">
+                <h3>System Latency (Real-time)</h3>
+                <div style="margin-top: 2rem; display: flex; align-items: flex-end; gap: 4px; height: 100px;">
+                    <div style="flex: 1; background: var(--primary); height: 40%; opacity: 0.5;"></div>
+                    <div style="flex: 1; background: var(--primary); height: 60%; opacity: 0.7;"></div>
+                    <div style="flex: 1; background: var(--primary); height: 30%; opacity: 0.4;"></div>
+                    <div style="flex: 1; background: var(--primary); height: 90%;"></div>
+                    <div style="flex: 1; background: var(--primary); height: 75%; opacity: 0.8;"></div>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; color: var(--text-muted);">Avg. Latency: 184ms</p>
+            </div>
+        </div>
+
+        <div class="dashboard-content container" id="financial-audit" style="display: none;">
+            <h2 class="gradient-text">Financial Audit</h2>
+            <div class="grid-3" style="margin-top: 2rem;">
+                <div class="glass-panel" style="padding: 2rem;">
+                    <h4>ARR</h4>
+                    <p style="font-size: 1.8rem; font-weight: 700;">$1.2M</p>
+                </div>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <h4>Cloud Spend</h4>
+                    <p style="font-size: 1.8rem; font-weight: 700;">$42k</p>
+                </div>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <h4>Margin</h4>
+                    <p style="font-size: 1.8rem; font-weight: 700;">88%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content container" id="security-protocols" style="display: none;">
+            <h2 class="gradient-text">Security Protocols</h2>
+            <div class="glass-panel" style="padding: 3rem; margin-top: 2rem;">
+                <h3 style="color: #ff6b6b; margin-bottom: 1.5rem;">Active Threats: 0</h3>
+                <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px;">
+                    <code style="color: #4ecdc4; font-size: 0.85rem;">[22:45:01] Firewall integrity check: OK<br>[22:45:10] Root access restricted to admin@stackly.ai<br>[22:45:30] Neural hashing sequence rotated.</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content container" id="system-config" style="display: none;">
+            <h2 class="gradient-text">System Configuration</h2>
+            <div class="glass-panel" style="padding: 3rem; margin-top: 2rem; max-width: 600px;">
+                <form class="neural-form">
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label>Environment Mode</label>
+                        <select style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); color: white; padding: 1rem; border-radius: 8px; margin-top: 0.5rem;" required>
+                            <option value="" disabled selected>Select Mode</option>
+                            <option>Production (Secure)</option>
+                            <option>Maintenance Mode</option>
+                            <option>Debug (Logs only)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Save Configuration</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Check Auth and update UI
+        const role = localStorage.getItem('stackly_role') || 'admin';
+        const email = localStorage.getItem('stackly_email') || 'admin@stackly.ai';
+        
+        document.getElementById('admin-email-display').textContent = email;
+        document.getElementById('admin-role-display').textContent = `${role.toUpperCase()}`;
+
+        // Tab Switching Logic for Admin
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        const sections = document.querySelectorAll('.dashboard-content');
+
+        const map = {
+            'Global Overview': 'admin-overview',
+            'User Database': 'user-database',
+            'Model Registry': 'model-registry',
+            'Node Management': 'node-management',
+            'Health Monitor': 'health-monitor',
+            'Financial Audit': 'financial-audit',
+            'Security Protocols': 'security-protocols',
+            'System Config': 'system-config'
+        };
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                sidebarLinks.forEach(l => {
+                    l.classList.remove('active-link');
+                    l.style.background = 'transparent';
+                    l.style.color = 'var(--text-muted)';
+                });
+
+                link.classList.add('active-link');
+                link.style.background = 'rgba(138, 125, 250, 0.05)';
+                link.style.color = 'var(--primary)';
+
+                sections.forEach(s => s.style.display = 'none');
+                
+                const targetId = link.getAttribute('data-target');
+                if (targetId) {
+                    document.getElementById(targetId).style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

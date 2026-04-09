@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Plans | Stackly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero {
+            min-height: 55vh;
+            padding-top: 150px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .toggle-btn {
+            background: rgba(138, 125, 250, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            color: var(--text-muted);
+        }
+
+        .toggle-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .discount-badge {
+            background: #4ecdc4;
+            color: var(--bg-dark);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+
+        .calc-box {
+            max-width: 600px;
+            margin: 4rem auto;
+            text-align: center;
+        }
+
+        .calc-input {
+            width: 100%;
+            height: 6px;
+            background: rgba(138, 125, 250, 0.2);
+            border-radius: 5px;
+            appearance: none;
+            outline: none;
+            margin: 2rem 0;
+        }
+
+        .calc-input::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .comp-table th,
+        .comp-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comp-table th {
+            color: var(--primary);
+        }
+
+        .check {
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .cross {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Premium Preloader -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="loader-signal-container">
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-core">
+                    <img src="assets/stackly jpg.webp" alt="Loading" class="loader-logo logo-img">
+                </div>
+            </div>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <div class="loader-text">Processing Protocols</div>
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="subscription.html" class="active">Subscription</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn-primary">Login</a>
+                <button class="menu-toggle" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
+                <button class="close-menu" id="close-menu-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="subscription.html">Subscription</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li style="margin-top: 2rem;"><a href="login.html" class="btn-primary-full">Login</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Subscription Hero Section -->
+    <section class="hero hero-small">
+        <div class="container hero-content">
+            <div class="badge">Premium Neural Tiers</div>
+            <h1 class="hero-title reveal">Choose Your <br><span class="gradient-text">AI Power Level <i class="fa-solid fa-bolt"></i></span></h1>
+            <p class="hero-subtitle reveal">Flexible neural plans designed for individual creators, world-class
+                developers, and scaling businesses.</p>
+
+            <div class="toggle-container reveal">
+                <button class="toggle-btn active">Monthly</button>
+                <button class="toggle-btn">Yearly</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Cards Section -->
+    <section class="section">
+        <div class="container">
+            <div class="pricing-grid grid-3">
+
+                <!-- Free Plan -->
+                <div class="pricing-card glass-panel reveal" style="border-top: 4px solid #4ecdc4;">
+                    <h3 style="color: #4ecdc4;">Cognitive Core</h3>
+                    <div class="price">Free<span>/forever</span></div>
+                    <p style="margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-muted);">Perfect for light
+                        exploration and basic neural search.</p>
+                    <ul>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Limited AI Access</li>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Basic Generation Tools</li>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> 50 Daily Usage Limit</li>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Community Support</li>
+                    </ul>
+                    <button class="btn-outline"
+                        style="width: 100%; margin-top: 2rem; border-color: #4ecdc4; color: #4ecdc4;" onclick="window.location.href='404.html'">Start
+                        Free</button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card glass-panel featured reveal">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3 style="color: var(--primary);">Neural Prime Pro</h3>
+                    <div class="price">$49<span>/mo</span></div>
+                    <p style="margin-bottom: 2rem; font-size: 0.9rem; color: rgba(255,255,255,0.7);">Our powerhouse tier
+                        for professional creators and daily users.</p>
+                    <ul>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Unlimited AI Usage</li>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Priority Response Time</li>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> All Neural Tools Unlocked</li>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> 24/7 Dedicated Support</li>
+                    </ul>
+                    <button class="btn-primary-full" style="width: 100%; margin-top: 2rem;" onclick="window.location.href='404.html'">Upgrade Now</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card glass-panel reveal" style="border-top: 4px solid var(--secondary);">
+                    <h3 style="color: var(--secondary);">Enterprise Flux</h3>
+                    <div class="price">Custom<span>/tier</span></div>
+                    <p style="margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-muted);">Bespoke neural clusters
+                        for high-frequency organizations.</p>
+                    <ul>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Custom AI Solutions</li>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Direct API Access</li>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Dedicated Neural Engineer</li>
+                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
+                                fill="none">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> White-label Integration</li>
+                    </ul>
+                    <button class="btn-outline"
+                        style="width: 100%; margin-top: 2rem; border-color: var(--secondary); color: var(--secondary);" onclick="window.location.href='404.html'">Contact
+                        Us</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Calculator Section -->
+    <section class="section section-dark" style="background: rgba(138, 125, 250, 0.01);">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Interactive Tool</span>
+                <h2>Find Your <span class="gradient-text">Perfect Balance</span></h2>
+            </div>
+            <div class="calc-box glass-panel reveal" style="padding: 4rem;">
+                <h3>How many prompts per day?</h3>
+                <input type="range" class="calc-input" id="usageSlider" min="1" max="500" value="50">
+                <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary);" id="usageVal">50</div>
+                <div style="margin-top: 2rem; font-size: 1.1rem; font-weight: 600;" id="usageRec">“Based on your usage,
+                    we recommend <span style="color: #4ecdc4;">CORE</span> plan”</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Deep Dive</span>
+                <h2>Feature <span class="gradient-text">Comparison</span></h2>
+            </div>
+            <div class="glass-panel reveal no-scrollbar" style="padding: 3rem; overflow-x: auto;">
+                <table class="comp-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left;">Neural Capability</th>
+                            <th>Free</th>
+                            <th>Pro</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: left;">Text AI (Flux-Write)</td>
+                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Image AI (Flux-Vision)</td>
+                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
+                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Code AI (Flux-Code)</td>
+                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
+                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">API Access</td>
+                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
+                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
+                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Custom Fine-tuning</td>
+                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
+                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
+                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers Section -->
+    <section class="section section-dark"
+        style="background: rgba(138, 125, 250, 0.02); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Limited Offers</span>
+                <h2>Conversion <span class="gradient-text">Booster</span></h2>
+            </div>
+            <div class="grid-3" style="margin-top: 4rem; text-align: center;">
+                <div class="glass-panel reveal" style="padding: 3rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-gift"></i></div>
+                    <h3>7-Day Free Trial</h3>
+                    <p style="color: var(--text-muted);">Experience Pro features risk-free for an entire week.</p>
+                </div>
+                <div class="glass-panel reveal" style="padding: 3rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <h3>20% Yearly Discount</h3>
+                    <p style="color: var(--text-muted);">Save big when you commit to our annual neural vision.</p>
+                </div>
+                <div class="glass-panel reveal" style="padding: 3rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-gift"></i></div>
+                    <h3>Signup Bonus</h3>
+                    <p style="color: var(--text-muted);">Get 500 initial bonus credits when you join today.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo">
+                     <a href="404.html">
+                        <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img-footer">
+                     </a>
+                </div>
+                <p>Synthesizing human desire with AI logic. Pushing the boundaries of emotive and cognitive search technologies since 2024.</p>
+                <div class="footer-social">
+                    <a href="404.html" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+                    <a href="404.html" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="404.html" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="404.html" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><strong>Product</strong></li>
+                    <li><a href="404.html">Neural Engine</a></li>
+                    <li><a href="404.html">AI Features</a></li>
+                    <li><a href="404.html">Subscription</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><strong>Company</strong></li>
+                    <li><a href="404.html">About Us</a></li>
+                    <li><a href="404.html">Contact Us</a></li>
+                    <li><a href="404.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><strong>Quick Links</strong></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Stackly Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const slider = document.getElementById('usageSlider');
+        const usageVal = document.getElementById('usageVal');
+        const usageRec = document.getElementById('usageRec');
+
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            usageVal.textContent = val;
+
+            if (val < 50) {
+                usageRec.innerHTML = '“Based on your usage, we recommend <span style="color: #4ecdc4;">CORE</span> plan”';
+            } else if (val < 300) {
+                usageRec.innerHTML = '“Based on your usage, we recommend <span style="color: var(--primary);">PRO</span> plan”';
+            } else {
+                usageRec.innerHTML = '“Based on your usage, we recommend <span style="color: var(--secondary);">ENTERPRISE</span> plan”';
+            }
+        });
+    </script>
+</body>
+
+</html>

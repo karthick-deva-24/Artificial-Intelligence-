@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Signal Lost | Stackly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: radial-gradient(circle at top right, rgba(138, 125, 250, 0.15), transparent),
+                radial-gradient(circle at bottom left, rgba(99, 91, 255, 0.1), transparent);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .error-content {
+            max-width: 600px;
+            z-index: 10;
+        }
+
+        .error-code {
+            font-size: 12rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 2rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -5px;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary) 0%, #fff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px var(--primary-glow));
+            animation: glitch-main 3s infinite;
+        }
+
+        .error-code::before, .error-code::after {
+            content: '404';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .error-code::before {
+            color: #ff6b6b;
+            animation: glitch-offset 2s infinite linear alternate-reverse;
+            -webkit-text-fill-color: #ff6b6b;
+            left: -2px;
+        }
+
+        .error-code::after {
+            color: #4ecdc4;
+            animation: glitch-offset 3s infinite linear alternate-reverse;
+            -webkit-text-fill-color: #4ecdc4;
+            left: 2px;
+        }
+
+        @keyframes glitch-main {
+            0%, 90%, 100% { transform: scale(1); filter: hue-rotate(0deg); }
+            92% { transform: scale(1.02) skewX(2deg); filter: hue-rotate(90deg); }
+            94% { transform: scale(0.98) skewY(-2deg); filter: hue-rotate(180deg); }
+            96% { transform: scale(1.01); filter: hue-rotate(270deg); }
+        }
+
+        @keyframes glitch-offset {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 2px); }
+            40% { transform: translate(-3px, -2px); }
+            60% { transform: translate(3px, 2px); }
+            80% { transform: translate(3px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .error-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .error-desc {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            margin-bottom: 3.5rem;
+            line-height: 1.8;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary-large {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px var(--primary-shadow);
+        }
+
+        .btn-primary-large:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px var(--primary-shadow);
+            background: #7a69f7;
+        }
+
+        .floating-orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+            transition: transform 0.2s ease-out;
+        }
+
+        .void-lines {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: perspective(1000px) rotateX(45deg);
+            z-index: -1;
+            opacity: 0.2;
+            animation: grid-move 20s linear infinite;
+        }
+
+        @keyframes grid-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 60px; }
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+
+        .neural-fragment {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Premium Preloader -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="loader-signal-container">
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-core">
+                    <img src="assets/stackly jpg.webp" alt="Loading" class="loader-logo logo-img">
+                </div>
+            </div>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <div class="loader-text">Locating Signal</div>
+        </div>
+    </div>
+
+    <div class="scanline"></div>
+    <main class="error-page">
+        <div class="floating-orb" id="orb-1" style="top: 10%; right: 10%;"></div>
+        <div class="floating-orb" id="orb-2" style="bottom: 15%; left: 15%;"></div>
+        <div class="void-lines"></div>
+
+        <div class="error-content reveal">
+            <div class="error-code">404</div>
+            <h1 class="error-title">Neural Node <span class="gradient-text">Lost</span></h1>
+            <p class="error-desc">The signal you are attempting to reach has been fragmented into the neural void of the Stackly cluster.</p>
+            <div class="error-actions">
+                <a href="index.html" class="btn-primary-large">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    Back to Cluster Root
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Force reveal
+            setTimeout(() => {
+                document.querySelector('.reveal').classList.add('active');
+            }, 500);
+
+            // Parallax Effect for Orbs
+            const orb1 = document.getElementById('orb-1');
+            const orb2 = document.getElementById('orb-2');
+            
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 60;
+                const y = (e.clientY / window.innerHeight - 0.5) * 60;
+                
+                if(orb1) orb1.style.transform = `translate(${x}px, ${y}px)`;
+                if(orb2) orb2.style.transform = `translate(${-x}px, ${-y}px)`;
+            });
+
+            // Create neural fragments (ambient effect)
+            const createFragment = () => {
+                const fragment = document.createElement('div');
+                fragment.className = 'neural-fragment';
+                document.body.appendChild(fragment);
+
+                const startX = Math.random() * window.innerWidth;
+                const startY = Math.random() * window.innerHeight;
+                
+                fragment.style.left = `${startX}px`;
+                fragment.style.top = `${startY}px`;
+                
+                const anim = fragment.animate([
+                    { opacity: 0, transform: 'translateY(0) scale(1)' },
+                    { opacity: 0.5, transform: 'translateY(-50px) scale(1.5)', offset: 0.5 },
+                    { opacity: 0, transform: 'translateY(-100px) scale(0)' }
+                ], {
+                    duration: 3000 + Math.random() * 2000,
+                    easing: 'ease-out'
+                });
+
+                anim.onfinish = () => fragment.remove();
+            };
+
+            setInterval(createFragment, 300);
+        });
+    </script>
+</body>
+
+</html>

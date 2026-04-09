@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Stackly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero { min-height: 50vh; padding-top: 150px; }
+        .hero-title { font-size: 4.5rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Premium Preloader -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="loader-signal-container">
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-signal-bar"></div>
+                <div class="loader-core">
+                    <img src="assets/stackly jpg.webp" alt="Loading" class="loader-logo logo-img">
+                </div>
+            </div>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <div class="loader-text">Optimizing Engines</div>
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="subscription.html">Subscription</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn-primary">Login</a>
+                <button class="menu-toggle" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
+                <button class="close-menu" id="close-menu-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="subscription.html">Subscription</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li style="margin-top: 2rem;"><a href="login.html" class="btn-primary-full">Login</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Services Hero Section -->
+    <section class="hero hero-small">
+        <div class="container hero-content">
+            <div class="badge">Scalable Growth</div>
+            <h1 class="hero-title reveal">AI Services That <br><span class="gradient-text">Transform Your Work</span></h1>
+            <p class="hero-subtitle reveal">Smart, fast, and scalable neural solutions designed to empower both individuals and high-growth enterprises.</p>
+            <div class="hero-cta reveal">
+                <a href="contact.html" class="btn-primary-large">Get Started &nbsp; <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="404.html" class="btn-outline" style="margin-left: 1rem;">Book Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main AI Services Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Innovation at Scale</span>
+                <h2>Our Modular <span class="gradient-text">AI Services</span></h2>
+            </div>
+            <div class="services-grid grid-3" style="margin-top: 4rem;">
+                
+                <!-- Content Writing -->
+                <div class="service-card glass-panel reveal" style="padding: 0; overflow: hidden; border-radius: 30px;">
+                    <img src="assets/text_tool.webp" alt="AI Content Writing" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 2.5rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">AI Content Writing</h3>
+                        <ul style="list-style: none; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                            <li style="margin-bottom: 0.5rem;">• Blog posts & articles</li>
+                            <li style="margin-bottom: 0.5rem;">• Social media captions</li>
+                            <li style="margin-bottom: 0.5rem;">• Email campaign writing</li>
+                        </ul>
+                        <p style="font-weight: 600; color: #4ecdc4;">High-quality content in seconds</p>
+                    </div>
+                </div>
+
+                <!-- Image Generation -->
+                <div class="service-card glass-panel reveal" style="padding: 0; overflow: hidden; border-radius: 30px;">
+                    <img src="assets/image_tool.webp" alt="AI Image Generation" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 2.5rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">AI Image Generation</h3>
+                        <ul style="list-style: none; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                            <li style="margin-bottom: 0.5rem;">• Text <i class="fa-solid fa-arrow-right"></i> Instant Image</li>
+                            <li style="margin-bottom: 0.5rem;">• Professional Posters</li>
+                            <li style="margin-bottom: 0.5rem;">• Marketing Design clusters</li>
+                        </ul>
+                        <p style="font-weight: 600; color: #4ecdc4;">Creative visuals instantly</p>
+                    </div>
+                </div>
+
+                <!-- Code Generation -->
+                <div class="service-card glass-panel reveal" style="padding: 0; overflow: hidden; border-radius: 30px;">
+                    <img src="assets/code_tool.webp" alt="AI Code Generation" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 2.5rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">AI Code Generation</h3>
+                        <ul style="list-style: none; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                            <li style="margin-bottom: 0.5rem;">• Rapid Code writing</li>
+                            <li style="margin-bottom: 0.5rem;">• Automated Debugging</li>
+                            <li style="margin-bottom: 0.5rem;">• Architecture Optimization</li>
+                        </ul>
+                        <p style="font-weight: 600; color: #4ecdc4;">Developer productivity boost</p>
+                    </div>
+                </div>
+
+                <!-- Data Analysis -->
+                <div class="service-card glass-panel reveal" style="padding: 0; overflow: hidden; border-radius: 30px;">
+                    <img src="assets/data_tool.webp" alt="AI Data Analysis" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 2.5rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">AI Data Analysis</h3>
+                        <ul style="list-style: none; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                            <li style="margin-bottom: 0.5rem;">• Real-time Data insights</li>
+                            <li style="margin-bottom: 0.5rem;">• Automated Reports</li>
+                            <li style="margin-bottom: 0.5rem;">• Predictive Decision models</li>
+                        </ul>
+                        <p style="font-weight: 600; color: #4ecdc4;">Smart decision making</p>
+                    </div>
+                </div>
+
+                <!-- Voice Services -->
+                <div class="service-card glass-panel reveal" style="padding: 0; overflow: hidden; border-radius: 30px;">
+                    <img src="assets/voice_tool.webp" alt="AI Voice Services" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 2.5rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">AI Voice Services</h3>
+                        <ul style="list-style: none; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                            <li style="margin-bottom: 0.5rem;">• Speech-to-text (Global)</li>
+                            <li style="margin-bottom: 0.5rem;">• Emotive Voice generation</li>
+                            <li style="margin-bottom: 0.5rem;">• Audio Multi-language sync</li>
+                        </ul>
+                        <p style="font-weight: 600; color: #4ecdc4;">Audio solutions easily</p>
+                    </div>
+                </div>
+
+                <!-- Chatbot Service -->
+                <div class="service-card glass-panel reveal" style="padding: 0; overflow: hidden; border-radius: 30px;">
+                    <img src="assets/chatbot_tool.webp" alt="AI Chatbot Service" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 2.5rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">AI Chatbot Automation</h3>
+                        <ul style="list-style: none; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                            <li style="margin-bottom: 0.5rem;">• Customer support bots</li>
+                            <li style="margin-bottom: 0.5rem;">• Website integration</li>
+                            <li style="margin-bottom: 0.5rem;">• 24/7 autonomous responses</li>
+                        </ul>
+                        <p style="font-weight: 600; color: #4ecdc4;">Automated 24/7 engagement</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries We Serve Section (Previous) -->
+    <section class="section section-dark" style="background: rgba(138, 125, 250, 0.01);">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Target Markets</span>
+                <h2>Industries We <span class="gradient-text">Empower</span></h2>
+            </div>
+            <div class="grid-4" style="margin: 4rem 0;">
+                <div class="glass-panel reveal" style="padding: 3rem; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3>Education</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Personalized neural learning paths and automated drafting.</p>
+                </div>
+                <div class="glass-panel reveal" style="padding: 3rem; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-hospital"></i></div>
+                    <h3>Healthcare</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Neural diagnostics aid and secure data fragmentation.</p>
+                </div>
+                <div class="glass-panel reveal" style="padding: 3rem; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <h3>E-commerce</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Intelligent chatbots and global product translation.</p>
+                </div>
+                <div class="glass-panel reveal" style="padding: 3rem; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Marketing</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Predictive sentiment engines for precision targeting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Our Services Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Performance Hub</span>
+                <h2>Why Trust <span class="gradient-text">Stackly Services?</span></h2>
+            </div>
+            <div class="grid-4" style="margin-top: 4rem;">
+                <div class="glass-panel reveal" style="padding: 2.5rem; text-align: center; border-bottom: 3px solid var(--primary);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Fast & Accurate</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">200ms neural response time with 99.4% precision accuracy.</p>
+                </div>
+                <div class="glass-panel reveal" style="padding: 2.5rem; text-align: center; border-bottom: 3px solid var(--secondary);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>Easy to Use</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">One-click integration with our intuitive Flux dashboard.</p>
+                </div>
+                <div class="glass-panel reveal" style="padding: 2.5rem; text-align: center; border-bottom: 3px solid #fff;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <h3>Affordable Pricing</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Premium enterprise-level AI tools starting from just $49/mo.</p>
+                </div>
+                <div class="glass-panel reveal" style="padding: 2.5rem; text-align: center; border-bottom: 3px solid var(--primary);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-lock"></i></div>
+                    <h3>Secure Platform</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">End-to-end military grade zero-trust neural data hashing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results / Impact Section -->
+    <section class="section section-dark" style="background: rgba(138, 125, 250, 0.02); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="grid-3" style="text-align: center;">
+                <div class="reveal">
+                    <h2 class="gradient-text" style="font-size: 4rem; margin-bottom: 0.5rem;">1M+</h2>
+                    <p style="color: var(--text-muted); letter-spacing: 0.1em; font-weight: 600;">TASKS COMPLETED</p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.1s;">
+                    <h2 class="gradient-text" style="font-size: 4rem; margin-bottom: 0.5rem;">50k+</h2>
+                    <p style="color: var(--text-muted); letter-spacing: 0.1em; font-weight: 600;">ACTIVE USERS</p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <h2 class="gradient-text" style="font-size: 4rem; margin-bottom: 0.5rem;">95%</h2>
+                    <p style="color: var(--text-muted); letter-spacing: 0.1em; font-weight: 600;">SATISFACTION RATE</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo / Sample Output Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Real-world Example</span>
+                <h2>Neural <span class="gradient-text">Transformation</span></h2>
+            </div>
+            <div class="glass-panel reveal" style="margin-top: 4rem; padding: 4rem; position: relative; overflow: hidden;">
+                <div class="grid-2" style="gap: 5rem; align-items: center;">
+                    <div class="before-demo">
+                        <label style="display: block; margin-bottom: 1rem; font-weight: 700; color: var(--primary);">INPUT PROMPT</label>
+                        <div class="glass-panel" style="padding: 2rem; border-color: rgba(138, 125, 250, 0.3);">
+                            <p style="font-style: italic; color: var(--text-muted);">"Design a cinematic logo concept for a space-exploration AI startup named StarLinx."</p>
+                        </div>
+                    </div>
+                    <div class="after-result" style="text-align: center;">
+                        <label style="display: block; margin-bottom: 1rem; font-weight: 700; color: #4ecdc4;">AFTER (AI RESULT)</label>
+                        <div class="glass-panel" style="padding: 1.5rem; border-color: rgba(78, 205, 196, 0.3); background: rgba(78, 205, 196, 0.05);">
+                            <img src="assets/image_tool.webp" alt="AI Log Concept" style="width: 100%; border-radius: 12px; filter: hue-rotate(45deg);">
+                            <p style="margin-top: 1rem; font-size: 0.8rem; font-weight: 600;">GENERATED IN 184MS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo">
+                     <a href="404.html">
+                        <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img-footer">
+                     </a>
+                </div>
+                <p>Synthesizing human desire with AI logic. Pushing the boundaries of emotive and cognitive search technologies since 2024.</p>
+                <div class="footer-social">
+                    <a href="404.html" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+                    <a href="404.html" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="404.html" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="404.html" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><strong>Product</strong></li>
+                    <li><a href="404.html">Neural Engine</a></li>
+                    <li><a href="404.html">AI Features</a></li>
+                    <li><a href="404.html">Subscription</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><strong>Company</strong></li>
+                    <li><a href="404.html">About Us</a></li>
+                    <li><a href="404.html">Contact Us</a></li>
+                    <li><a href="404.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><strong>Quick Links</strong></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Stackly Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
