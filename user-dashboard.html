@@ -5,297 +5,280 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard | Stackly</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=14">
     <style>
-        .dashboard { min-height: 100vh; padding: 120px 2rem 2rem; }
-        .sidebar { background: rgba(255, 255, 255, 0.02); border-right: 1px solid var(--border-color); width: 260px; height: 100vh; position: fixed; top: 0; left: 0; padding: 120px 1.5rem 2rem; }
-        .dashboard-content { margin-left: 280px; }
-        .stat-card { padding: 2rem; text-align: center; }
-        
-        /* Identity Profile Header Implementation */
-        .header-identity { display: flex; align-items: center; gap: 1.5rem; }
-        .identity-avatar { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.4rem; }
-
-        .identity-meta { text-align: left; line-height: 1.3; }
-        .identity-email { font-weight: 700; color: var(--text-main); font-size: 1.05rem; display: block; }
-        .identity-role { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; display: block; }
-        .sidebar-link:hover { background: rgba(138, 125, 250, 0.08); color: var(--primary) !important; transform: translateX(5px); }
-        .sidebar-link { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .identity-logout { display: flex; align-items: center; gap: 0.6rem; border: 1.5px solid var(--primary); color: var(--primary); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
-        .identity-logout:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+        .dashboard { padding: 2rem; min-height: 100vh; }
+        .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 280px; background: rgba(10, 10, 15, 0.4); backdrop-filter: blur(20px); border-right: 1px solid var(--border-color); padding: 2rem; }
+        .main-content { margin-left: 280px; padding: 2rem; }
+        .sidebar-logo { font-size: 1.5rem; font-weight: 700; margin-bottom: 3rem; display: flex; align-items: center; gap: 0.8rem; }
+        .sidebar-links { list-style: none; }
+        .sidebar-links li { margin-bottom: 0.5rem; }
+        .sidebar-links a { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s; }
+        .sidebar-links a:hover, .sidebar-links a.active { background: rgba(138, 125, 250, 0.1); color: var(--primary); }
+        .sidebar-link { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s; text-decoration: none; }
+        .sidebar-link:hover, .sidebar-link.active { background: rgba(138, 125, 250, 0.1); color: var(--primary); }
+        .dash-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; padding: 10px; }
+        .dash-hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 4px; transition: all 0.35s cubic-bezier(0.4,0,0.2,1); transform-origin: center; }
+        .dash-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .dash-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .dash-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        @media (max-width: 768px) { .dash-hamburger { display: flex !important; } }
     </style>
 </head>
-<body>
-
-    <!-- Premium Preloader -->
-    <div id="preloader">
-        <div class="loader-content">
-            <div class="loader-signal-container">
-                <div class="loader-signal-bar"></div>
-                <div class="loader-signal-bar"></div>
-                <div class="loader-signal-bar"></div>
-                <div class="loader-signal-bar"></div>
-                <div class="loader-signal-bar"></div>
-                <div class="loader-signal-bar"></div>
-                <div class="loader-signal-bar"></div>
-                <div class="loader-signal-bar"></div>
-                <div class="loader-core">
-                    <img src="assets/stackly jpg.webp" alt="Loading" class="loader-logo logo-img">
-                </div>
-            </div>
-            <div class="loader-bar-container">
-                <div class="loader-bar"></div>
-            </div>
-            <div class="loader-text">Syncing User Node</div>
-        </div>
-    </div>
-
-    <header class="header">
-        <nav class="nav container">
-            <div class="logo">
-                <a href="user-dashboard.html">
-                    <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
-                </a>
-                <button class="menu-toggle" id="dashboard-menu-btn" style="margin-left: 1.5rem;"><i class="fa-solid fa-bars"></i></button>
-            </div>
-            
-            <!-- User Identity Section (As requested) -->
-            <div class="header-identity">
-                <div class="identity-avatar">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                </div>
-                <div class="identity-meta">
-                    <span class="identity-email" id="user-email-display">user@stackly.ai</span>
-                    <span class="identity-role" id="user-role-display">User</span>
-                </div>
-                <a href="login.html" class="identity-logout" onclick="localStorage.clear()">
-                   <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                   Logout
-                </a>
-            </div>
-        </nav>
-    </header>
+<body class="dashboard">
 
     <aside class="sidebar">
-        <div style="margin-bottom: 2.5rem; padding-left: 1rem;">
-            <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); font-weight: 700;">Workspace</span>
+        <div class="sidebar-logo">
+            <img src="assets/stackly.webp" alt="Stackly" class="logo-img" style="height: 30px;">
         </div>
-        <ul style="list-style: none;">
-            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link active-link" data-target="main-overview" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--primary); background: rgba(138, 125, 250, 0.05); font-weight: 600;">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                Neural Dashboard</a>
-            </li>
-            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="ai-text-lab" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                AI Text Lab</a>
-            </li>
-
-            <li style="margin-bottom: 2rem;"><a href="#" class="sidebar-link" data-target="my-projects" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 112px; color: var(--text-muted); transition: 0.3s;">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-                My Projects</a>
-            </li>
-
-            <div style="margin: 2rem 0 1rem; padding-left: 1rem;">
-                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); font-weight: 700;">Infrastructure</span>
-            </div>
+        <nav class="sidebar-nav" style="margin-top: 2rem;">
+            <p style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; padding-left: 1rem;">Core</p>
             
-            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="api-credentials" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                API Credentials</a>
-            </li>
-            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="account-profile" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                Account Profile</a>
-            </li>
-            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="billing-credits" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                Billing & Credits</a>
-            </li>
-            <li style="margin-bottom: 0.5rem;"><a href="#" class="sidebar-link" data-target="help-resources" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; color: var(--text-muted); transition: 0.3s;">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                Help Resources</a>
-            </li>
-        </ul>
+            <ul class="sidebar-links" style="list-style: none;">
+                <li data-target="home-tab"><a href="#" class="sidebar-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li data-target="search-tab"><a href="#" class="sidebar-link"><i class="fa-solid fa-magnifying-glass"></i> Neural Search</a></li>
+                <li data-target="history-tab"><a href="#" class="sidebar-link"><i class="fa-solid fa-clock-rotate-left"></i> Sync History</a></li>
+            </ul>
+
+            <p style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 2rem 0 1rem; padding-left: 1rem;">Workspace</p>
+            <ul class="sidebar-links" style="list-style: none;">
+                <li data-target="datasets-tab"><a href="#" class="sidebar-link"><i class="fa-solid fa-cloud-arrow-up"></i> Datasets</a></li>
+                <li data-target="keys-tab"><a href="#" class="sidebar-link"><i class="fa-solid fa-key"></i> API Keys</a></li>
+                <li data-target="settings-tab"><a href="#" class="sidebar-link"><i class="fa-solid fa-gear"></i> Settings</a></li>
+            </ul>
+        </nav>
     </aside>
 
-    <main class="dashboard">
-        <div class="dashboard-content container" id="main-overview">
-            <h1 class="reveal">Welcome, <span id="welcome-name" class="gradient-text">Neural User</span></h1>
-            <p style="margin-top: 1rem; color: var(--text-muted);">Your personalized AI cognitive workspace is ready.</p>
 
-            <div class="grid-3" style="margin-top: 3rem;">
-                <div class="glass-panel stat-card reveal">
-                    <h3 style="color: var(--primary);">Total Prompts</h3>
-                    <div style="font-size: 2.5rem; font-weight: 700; margin: 1rem 0;">1,284</div>
-                    <p style="font-size: 0.8rem; color: #4ecdc4;">+12% from yesterday</p>
-                </div>
+    <main class="main-content">
+        
+        <!-- Sidebar Overlay -->
+        <div id="sidebar-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9998; backdrop-filter:blur(4px);"></div>
 
-                <div class="glass-panel stat-card reveal" style="transition-delay: 0.2s;">
-                    <h3 style="color: var(--primary);">Credits Left</h3>
-                    <div style="font-size: 2.5rem; font-weight: 700; margin: 1rem 0;">850</div>
-                    <p style="font-size: 0.8rem; color: #ff6b6b;">Expires in 12 days</p>
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <button id="dash-hamburger" class="dash-hamburger" aria-label="Toggle Sidebar">
+                    <span></span><span></span><span></span>
+                </button>
+                <div>
+                    <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Hello, <span class="gradient-text user-name">Explorer</span></h1>
+                    <p style="color: var(--text-muted);">Welcome to your personalized intelligence sync.</p>
                 </div>
             </div>
-
-            <div class="glass-panel reveal" style="margin-top: 3rem; padding: 3rem;">
-                <h3>Active Neural Projects</h3>
-                <div style="margin-top: 2rem; border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <h4 style="color: var(--primary);">Quantum Marketing AI</h4>
-                        <p style="font-size: 0.8rem; color: var(--text-muted);">Flux-Core 2.0 Deployment</p>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div class="glass-panel" style="padding: 0.8rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                    <div style="text-align: right;">
+                        <div style="font-weight: 600;" class="user-email">user@stackly.ai</div>
+                        <div style="font-size: 0.8rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em;" class="user-role">PRO MIGRATED</div>
                     </div>
-                    <span class="badge" style="background: rgba(78, 205, 196, 0.1); color: #4ecdc4;">Running</span>
+                    <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 700;" class="user-avatar-initial">U</div>
                 </div>
+                <a href="login.html" class="glass-panel" style="padding: 0.8rem 1.2rem; color: #ff6b6b; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: 0.3s;" onmouseover="this.style.background='rgba(255, 107, 107, 0.1)'" onmouseout="this.style.background='var(--panel-bg)'">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </header>
+
+
+        
+        <div id="home-tab" class="dashboard-content" style="display: block;">
+<div class="grid-3" style="gap: 2rem;">
+            <div class="stat-card glass-panel pulse-target" style="padding: 2.5rem;">
+                <h3 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;">Neural Credits</h3>
+                <p style="font-size: 2.8rem; font-weight: 800; margin: 0.5rem 0;" class="shimmer-text">1,240</p>
+                <div style="height: 6px; width: 100%; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden;">
+                    <div style="height: 100%; width: 65%; background: var(--primary); border-radius: 10px;"></div>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">65% of monthly quota remaining</p>
+            </div>
+            <div class="stat-card glass-panel" style="padding: 2.5rem;">
+                <h3 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;">Sync Uptime</h3>
+                <p style="font-size: 2.8rem; font-weight: 800; margin: 0.5rem 0;">99.99%</p>
+                <div style="display: flex; gap: 4px; align-items: flex-end; height: 30px;">
+                    <div style="width: 6px; height: 15px; background: #4ecdc4; border-radius: 10px;"></div>
+                    <div style="width: 6px; height: 25px; background: #4ecdc4; border-radius: 10px;"></div>
+                    <div style="width: 6px; height: 20px; background: #4ecdc4; border-radius: 10px;"></div>
+                    <div style="width: 6px; height: 28px; background: #4ecdc4; border-radius: 10px;"></div>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">Primary Node: SG-East-01</p>
+            </div>
+            <div class="stat-card glass-panel" style="padding: 2.5rem;">
+                <h3 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;">Generations</h3>
+                <p style="font-size: 2.8rem; font-weight: 800; margin: 0.5rem 0;">412</p>
+                <span style="color: #4ade80; font-size: 0.85rem;"><i class="fa-solid fa-caret-up"></i> +12.4% Neural Efficiency</span>
             </div>
         </div>
 
-        <!-- Hidden Sections for Navigation -->
-        <div class="dashboard-content container" id="ai-text-lab" style="display: none;">
-            <h2 class="gradient-text">AI Text Lab</h2>
-            <div class="glass-panel" style="padding: 3rem; margin-top: 2rem;">
-                <form class="neural-form">
-                    <textarea rows="8" style="width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); color: white; padding: 1.5rem; border-radius: 12px; font-family: inherit;" placeholder="State your neural intent here..." required></textarea>
-                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
-                        <button type="submit" class="btn-primary">Generate Neural Output</button>
-                        <button type="button" class="btn-outline" onclick="window.location.href='404.html'">Creative Mode</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="dashboard-content container" id="my-projects" style="display: none;">
-            <h2 class="gradient-text">My Neural Projects</h2>
-            <div class="grid-2" style="margin-top: 2rem;">
-                <div class="glass-panel" style="padding: 2rem;">
-                    <h3>Flux Synthesis v1</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Created 2 days ago</p>
-                </div>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <h3>Project Omega</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Created 5 days ago</p>
+        <div class="glass-panel reveal" style="margin-top: 3rem; padding: 3rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h3>Neural Activity <span style="font-weight: 400; color: var(--text-muted); font-size: 0.9rem;">(Last 7 Days)</span></h3>
+                <div style="display: flex; gap: 1.5rem;">
+                    <div style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem;"><div style="width: 8px; height: 8px; background: var(--primary); border-radius: 50%;"></div> Queries</div>
+                    <div style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem;"><div style="width: 8px; height: 8px; background: #4ecdc4; border-radius: 50%;"></div> Synthesis</div>
                 </div>
             </div>
-        </div>
-
-        <div class="dashboard-content container" id="api-credentials" style="display: none;">
-            <h2 class="gradient-text">API Credentials</h2>
-            <div class="glass-panel" style="padding: 3rem; margin-top: 2rem;">
-                <div style="margin-bottom: 2rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Production Key</label>
-                    <div style="display: flex; gap: 1rem;">
-                        <input type="password" value="sk_stackly_live_9a2b7k2j1h8m3" readonly style="flex: 1; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); color: white; padding: 1rem; border-radius: 8px;">
-                        <button class="btn-outline" style="white-space: nowrap;" onclick="window.location.href='404.html'">Copy Key</button>
-                    </div>
+            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2rem; align-items: flex-end; height: 180px; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+                <div style="display: flex; flex-direction: column; gap: 4px; height: 100%; justify-content: flex-end;">
+                    <div style="height: 60%; width: 100%; background: var(--primary); border-radius: 4px; opacity: 0.8;"></div>
+                    <div style="height: 20%; width: 100%; background: #4ecdc4; border-radius: 4px; opacity: 0.8;"></div>
                 </div>
-                <button class="btn-primary" onclick="window.location.href='404.html'">Regenerate Key</button>
+                <div style="display: flex; flex-direction: column; gap: 4px; height: 100%; justify-content: flex-end;">
+                    <div style="height: 80%; width: 100%; background: var(--primary); border-radius: 4px; opacity: 0.8;"></div>
+                    <div style="height: 30%; width: 100%; background: #4ecdc4; border-radius: 4px; opacity: 0.8;"></div>
+                </div>
+                <div style="height: 40%; width: 100%; background: var(--primary); border-radius: 4px; opacity: 0.8;"></div>
+                <div style="height: 95%; width: 100%; background: var(--primary); border-radius: 4px; opacity: 0.8;"></div>
+                <div style="height: 55%; width: 100%; background: var(--primary); border-radius: 4px; opacity: 0.8;"></div>
+                <div style="height: 70%; width: 100%; background: var(--primary); border-radius: 4px; opacity: 0.8;"></div>
+                <div style="height: 85%; width: 100%; background: var(--primary); border-radius: 4px; opacity: 0.8;"></div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2rem; text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;">
+                <div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div><div>SUN</div>
             </div>
         </div>
-
-        <div class="dashboard-content container" id="account-profile" style="display: none;">
-            <h2 class="gradient-text">Account Profile</h2>
-            <div class="glass-panel" style="padding: 3rem; margin-top: 2rem; max-width: 600px;">
-                <form class="neural-form">
-                    <div class="form-group" style="margin-bottom: 1.5rem;">
-                        <label>Full Name</label>
-                        <input type="text" value="Neural User" style="width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); color: white; padding: 1rem; border-radius: 8px; margin-top: 0.5rem;" required>
-                    </div>
-                    <div class="form-group" style="margin-bottom: 2rem;">
-                        <label>Bio-Verification</label>
-                        <p style="color: #4ecdc4; font-size: 0.85rem; margin-top: 0.5rem;">● Secured via Neural Hashing</p>
-                    </div>
-                    <button type="submit" class="btn-primary">Update Profile</button>
-                </form>
-            </div>
+    
         </div>
-
-        <div class="dashboard-content container" id="billing-credits" style="display: none;">
-            <h2 class="gradient-text">Billing & Credits</h2>
-            <div class="grid-2" style="margin-top: 2rem;">
-                <div class="glass-panel" style="padding: 2rem;">
-                    <h3>Current Plan</h3>
-                    <p style="font-size: 1.5rem; font-weight: 700; margin: 1rem 0;">Pro Explorer</p>
-                    <button class="btn-outline" onclick="window.location.href='404.html'">Manage Plan</button>
+        <div id="search-tab" class="dashboard-content" style="display: none;">
+            <div class="glass-panel" style="padding: 3rem;">
+                <h2>Neural Search Interface</h2>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <input type="text" placeholder="Enter query parameters or dataset ID..." style="flex: 1; padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.2); color: white;">
+                    <button class="btn-primary" onclick="window.location.href='404.html'">Execute Search</button>
                 </div>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <h3>Credit Balance</h3>
-                    <p style="font-size: 1.5rem; font-weight: 700; margin: 1rem 0;">850 Units</p>
-                    <button class="btn-primary" onclick="window.location.href='404.html'">Buy Credits</button>
+                <div style="margin-top: 3rem; text-align: center; color: var(--text-muted); opacity: 0.5;">
+                    <i class="fa-solid fa-magnifying-glass" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <p>Awaiting query input...</p>
                 </div>
             </div>
         </div>
-
-        <div class="dashboard-content container" id="help-resources" style="display: none;">
-            <h2 class="gradient-text">Help Resources</h2>
-            <div class="grid-3" style="margin-top: 2rem;">
-                <div class="glass-panel" style="padding: 2rem;">
-                    <h3>Docs</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Full API documentation and tutorials.</p>
-                </div>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <h3>Tutorials</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Video guides for neural orchestration.</p>
-                </div>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <h3>Support</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">24/7 priority channel.</p>
+        <div id="history-tab" class="dashboard-content" style="display: none;">
+            <div class="glass-panel" style="padding: 3rem;">
+                <h2>Sync History</h2>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 2rem; text-align: left;">
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <th style="padding: 1rem 0;">Date</th>
+                        <th style="padding: 1rem 0;">Operation</th>
+                        <th style="padding: 1rem 0;">Status</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 1rem 0; color: var(--text-muted);">Today, 10:45 AM</td>
+                        <td style="padding: 1rem 0;">Neural Sync (LDN Node)</td>
+                        <td style="padding: 1rem 0; color: #4ade80;">Success</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem 0; color: var(--text-muted);">Yesterday, 14:20 PM</td>
+                        <td style="padding: 1rem 0;">Data Model Uplift</td>
+                        <td style="padding: 1rem 0; color: #4ade80;">Success</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="datasets-tab" class="dashboard-content" style="display: none;">
+            <div class="glass-panel" style="padding: 3rem; text-align: center;">
+                <i class="fa-solid fa-cloud-arrow-up" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h2>Workspace Datasets</h2>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Upload and manage your enterprise datasets here.</p>
+                <button class="btn-outline" style="margin-top: 2rem;" onclick="window.location.href='404.html'">Upload New Dataset</button>
+            </div>
+        </div>
+        <div id="keys-tab" class="dashboard-content" style="display: none;">
+             <div class="glass-panel" style="padding: 3rem;">
+                <h2>API Credentials</h2>
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px dashed var(--primary); display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family: monospace; letter-spacing: 2px;">sk_live_stackly_xxxxxxxxxxxxxxxxx</span>
+                    <button class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="window.location.href='404.html'">Copy Key</button>
                 </div>
             </div>
         </div>
-
+        <div id="settings-tab" class="dashboard-content" style="display: none;">
+            <div class="glass-panel" style="padding: 3rem;">
+                <h2>Account Settings</h2>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Profile, billing, and notification preferences.</p>
+                <hr style="border-color: var(--border-color); margin: 2rem 0;">
+                <div>
+                     <label>Display Name</label><br>
+                     <input type="text" value="Neural Explorer" style="margin-top: 0.5rem; padding: 0.8rem; width: 100%; max-width: 400px; border-radius: 8px; border: 1px solid var(--border-color); background: transparent; color: white;">
+                </div>
+            </div>
+        </div>
     </main>
 
-    <script src="script.js"></script>
+
+    
     <script>
-        // Check Auth and update UI from session
-        const role = localStorage.getItem('stackly_role') || 'user';
-        const email = localStorage.getItem('stackly_email') || 'karthick@example.ai';
-        
-        document.getElementById('user-email-display').textContent = email;
-        document.getElementById('user-role-display').textContent = `${role.toUpperCase()}`;
-        document.getElementById('welcome-name').textContent = email.split('@')[0];
+        document.addEventListener('DOMContentLoaded', () => {
+            const email = localStorage.getItem('stackly_email') || 'user@stackly.ai';
+            const role = localStorage.getItem('stackly_role') || 'user';
+            
+            // Set email
+            const emailEl = document.querySelector('.user-email');
+            if (emailEl) emailEl.textContent = email;
+            
+            // Set greeting name
+            const nameEl = document.querySelector('.user-name');
+            if (nameEl) nameEl.textContent = email.split('@')[0];
+            
+            // Set role label — capitalize the role properly
+            const roleDisplay = document.querySelector('.user-role');
+            if (roleDisplay) {
+                const roleLabel = role.charAt(0).toUpperCase() + role.slice(1);
+                roleDisplay.textContent = roleLabel + ' Access';
+            }
+            
+            // Set avatar initial from email
+            const avatarEl = document.querySelector('.user-avatar-initial');
+            if (avatarEl) avatarEl.textContent = email.charAt(0).toUpperCase();
+            
+            // Tab switching logic
+            const sidebarLinks = document.querySelectorAll('li[data-target]');
+            const contents = document.querySelectorAll('.dashboard-content');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const hamburger = document.getElementById('dash-hamburger');
 
-        // Tab Switching Logic
-        const sidebarLinks = document.querySelectorAll('.sidebar-link');
-        const sections = document.querySelectorAll('.dashboard-content');
-
-        const map = {
-            'Neural Dashboard': 'main-overview',
-            'AI Text Lab': 'ai-text-lab',
-            'My Projects': 'my-projects',
-            'API Credentials': 'api-credentials',
-            'Account Profile': 'account-profile',
-            'Billing & Credits': 'billing-credits',
-            'Help Resources': 'help-resources'
-        };
-
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Remove active classes
-                sidebarLinks.forEach(l => {
-                    l.classList.remove('active-link');
-                    l.style.background = 'transparent';
-                    l.style.color = 'var(--text-muted)';
+            // Hamburger toggle
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('open');
+                    sidebar.classList.toggle('active');
+                    const isOpen = sidebar.classList.contains('active');
+                    overlay.style.display = isOpen ? 'block' : 'none';
                 });
+            }
 
-                // Set current as active
-                link.classList.add('active-link');
-                link.style.background = 'rgba(138, 125, 250, 0.05)';
-                link.style.color = 'var(--primary)';
+            // Overlay click closes sidebar
+            if (overlay) {
+                overlay.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                    overlay.style.display = 'none';
+                    if (hamburger) hamburger.classList.remove('open');
+                });
+            }
 
-                // Hide all sections
-                sections.forEach(s => s.style.display = 'none');
-                
-                const targetId = link.getAttribute('data-target');
-                if (targetId) {
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-target');
+                    
+                    sidebarLinks.forEach(l => l.querySelector('a').classList.remove('active'));
+                    link.querySelector('a').classList.add('active');
+                    
+                    contents.forEach(c => c.style.display = 'none');
                     const targetEl = document.getElementById(targetId);
                     if (targetEl) targetEl.style.display = 'block';
-                }
+
+                    // Auto-close sidebar on mobile after nav
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('active');
+                        overlay.style.display = 'none';
+                        if (hamburger) hamburger.classList.remove('open');
+                    }
+                });
             });
         });
     </script>
 </body>
+
 </html>

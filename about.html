@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Stackly</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=14">
     <style>
-        .hero {
-            min-height: 60vh;
-            padding-top: 150px;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-        }
+        .hero { min-height: 60vh; padding-top: 150px; }
+        .hero-title { font-size: 4rem; }
     </style>
 </head>
-
 <body>
 
     <!-- Premium Preloader -->
@@ -39,7 +29,7 @@
                 <div class="loader-signal-bar"></div>
                 <div class="loader-signal-bar"></div>
                 <div class="loader-core">
-                    <img src="assets/stackly jpg.webp" alt="Loading" class="loader-logo logo-img">
+                    <img src="assets/stackly.webp" alt="Loading" class="loader-logo logo-img">
                 </div>
             </div>
             <div class="loader-bar-container">
@@ -53,16 +43,16 @@
         <nav class="nav container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
+                    <img src="assets/stackly.webp" alt="Stackly" class="logo-img">
                 </a>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="subscription.html">Subscription</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="about.html" class="nav-item active">About</a></li>
+                <li><a href="features.html" class="nav-item">Features</a></li>
+                <li><a href="services.html" class="nav-item">Services</a></li>
+                <li><a href="subscription.html" class="nav-item">Subscription</a></li>
+                <li><a href="contact.html" class="nav-item">Contact</a></li>
             </ul>
             <div class="nav-actions">
                 <a href="login.html" class="btn-primary">Login</a>
@@ -75,7 +65,7 @@
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-content">
             <div class="mobile-menu-header">
-                <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
+                <img src="assets/stackly.webp" alt="Stackly" class="logo-img">
                 <button class="close-menu" id="close-menu-btn"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <ul class="mobile-nav-links">
@@ -90,12 +80,20 @@
         </div>
     </div>
 
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <span><i class="fa-solid fa-rocket"></i> Stackly Flux-Core 2.0 deployment in progress...</span>
+            <span><i class="fa-solid fa-bolt"></i> 200ms latency threshold achieved globally.</span>
+            <span><i class="fa-solid fa-lock"></i> New Zero-Trust Neural Hashing protocols active.</span>
+            <span><i class="fa-solid fa-mobile-screen-button"></i> Mobile App Beta coming soon - Q3 2026.</span>
+        </div>
+    </div>
+
     <section class="hero hero-small">
         <div class="container hero-content">
             <div class="badge">Our Identity</div>
             <h1 class="hero-title reveal">Redefining Human-AI <br><span class="gradient-text">Collaboration</span></h1>
-            <p class="hero-subtitle reveal">Built on the foundation of neural intelligence, Stackly bridges the gap
-                between raw data and human desire.</p>
+            <p class="hero-subtitle reveal">Built on the foundation of neural intelligence, Stackly bridges the gap between raw data and human desire.</p>
         </div>
     </section>
 
@@ -103,8 +101,7 @@
         <div class="container grid-2">
             <div class="about-image reveal">
                 <div class="image-wrapper glass-panel">
-                    <img id="about-img" src="assets/about.png" alt="About AI"
-                        style="width: 100%; border-radius: 12px; display: block; filter: brightness(0.85);">
+                    <img id="about-img" src="assets/about.webp" alt="About AI" style="width: 100%; border-radius: 12px; display: block; filter: brightness(0.85);">
                     <div class="image-overlay"></div>
                 </div>
             </div>
@@ -113,58 +110,44 @@
                     <span class="badge">Modern intelligence</span>
                     <h2>A Scientific Approach to <span class="gradient-text">Emotive logic</span></h2>
                 </div>
-                <p>Stackly started with a simple hypothesis: that algorithms could do more than just process
-                    information; they can understand it. Our team of neural engineers and cognitive scientists spent
-                    years developing the Flux Core, an AI engine that prioritizes context over simple keywords.</p>
+                <p>Stackly started with a simple hypothesis: that algorithms could do more than just process information; they can understand it. Our team developed the Flux Core engine that prioritizes context over simple keywords.</p>
                 <div class="feature-list">
                     <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor"
-                                stroke-width="2" fill="none">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg></div>
-                        <div class="feature-text">
-                            <h3>Secure Neural Encryption</h3>
-                            <p>End-to-end cognitive protection for your data.</p>
-                        </div>
-                    </div>
+                        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="feature-text"><h3>Secure Neural Encryption</h3><p>End-to-end cognitive protection for your data.</p></div>
+                    </li>
                     <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor"
-                                stroke-width="2" fill="none">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg></div>
-                        <div class="feature-text">
-                            <h3>Real-time Synthesis</h3>
-                            <p>Adaptive modeling that evolves with user intent.</p>
-                        </div>
-                    </div>
+                        <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <div class="feature-text"><h3>Real-time Synthesis</h3><p>Adaptive modeling that evolves with user intent.</p></div>
+                    </li>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Milestones Section (Growth) -->
-    <section class="section section-dark"
-        style="background: rgba(138, 125, 250, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-        <div class="container">
-            <div class="grid-3" style="text-align: center;">
-                <div class="reveal">
-                    <h2 class="gradient-text" style="font-size: 3.5rem; margin-bottom: 0.5rem;">50k+</h2>
-                    <p
-                        style="color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">
-                        Active Neural Users</p>
+    <!-- Mission Section -->
+    <section class="section section-dark" style="background: rgba(138, 125, 250, 0.01);">
+        <div class="container grid-2">
+            <div class="mission-content reveal">
+                <span class="badge">Our Purpose</span>
+                <h2>Synthesizing a <span class="gradient-text">Hyper-Intelligent Future</span></h2>
+                <p style="color: var(--text-muted); margin-top: 1.5rem;">We believe the next era of human civilization will be defined by how deeply we can collaborate with silicon-based intelligence. Our mission is to build the ethical, emotional, and technical bridge to that future.</p>
+                <div style="margin-top: 2rem; display: flex; gap: 2rem;">
+                    <div>
+                        <h4 style="color: var(--primary);">01. Ethical AI</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Decentralized oversight for neural safety.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--primary);">02. Human-Centric</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Logic that speaks the language of desire.</p>
+                    </div>
                 </div>
-                <div class="reveal" style="transition-delay: 0.1s;">
-                    <h2 class="gradient-text" style="font-size: 3.5rem; margin-bottom: 0.5rem;">1M+</h2>
-                    <p
-                        style="color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">
-                        AI Generations</p>
-                </div>
-                <div class="reveal" style="transition-delay: 0.2s;">
-                    <h2 class="gradient-text" style="font-size: 3.5rem; margin-bottom: 0.5rem;">Global</h2>
-                    <p
-                        style="color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">
-                        Intelligence Reach</p>
+            </div>
+            <div class="mission-visual reveal">
+                <div class="glass-panel" style="padding: 2.5rem; border-left: 4px solid var(--primary);">
+                    <i class="fa-solid fa-quote-left" style="font-size: 2rem; opacity: 0.2; margin-bottom: 1rem;"></i>
+                    <p style="font-style: italic; font-size: 1.2rem; line-height: 1.6;">"The goal is not to replace human thought, but to expand it into dimensions we've only ever dreamed of."</p>
+                    <p style="margin-top: 2rem; font-weight: 700; color: var(--primary);">— Dr. Elias Vance, Chief Scientist</p>
                 </div>
             </div>
         </div>
@@ -174,163 +157,134 @@
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <span class="badge">Our DNA</span>
-                <h2>Core <span class="gradient-text">Values</span></h2>
+                <span class="badge">Global Presence</span>
+                <h2>Physical <span class="gradient-text">Neural Infrastructure</span></h2>
             </div>
             <div class="grid-4" style="margin-top: 4rem;">
-                <div class="glass-panel reveal" style="padding: 2.5rem; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-rocket"></i></div>
-                    <h3>Innovation</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Continuously pushing the boundaries of what
-                        neural networks can achieve.</p>
+                <div class="glass-panel reveal" style="padding: 2rem; text-align: left;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">New York</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Main Financial Cluster 01</p>
+                    <p style="font-size: 0.8rem; margin-top: 1rem;"><i class="fa-solid fa-microchip"></i> 14k+ Active H100 Nodes</p>
                 </div>
-                <div class="glass-panel reveal" style="padding: 2.5rem; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-gem"></i></div>
-                    <h3>Transparency</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Open architectural standards and honest AI
-                        communication.</p>
+                <div class="glass-panel reveal" style="padding: 2rem; text-align: left; transition-delay: 0.1s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">London</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">European Neural Hub</p>
+                    <p style="font-size: 0.8rem; margin-top: 1rem;"><i class="fa-solid fa-microchip"></i> 8k+ Active H100 Nodes</p>
                 </div>
-                <div class="glass-panel reveal" style="padding: 2.5rem; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-lock"></i></div>
-                    <h3>User Privacy</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Absolute sovereignty over your personal and
-                        enterprise data.</p>
+                <div class="glass-panel reveal" style="padding: 2rem; text-align: left; transition-delay: 0.2s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Tokyo</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">APAC Synthesis Center</p>
+                    <p style="font-size: 0.8rem; margin-top: 1rem;"><i class="fa-solid fa-microchip"></i> 12k+ Active H100 Nodes</p>
                 </div>
-                <div class="glass-panel reveal" style="padding: 2.5rem; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <h3>Quality</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Uncompromising precision in every neural
-                        signal generated.</p>
+                <div class="glass-panel reveal" style="padding: 2rem; text-align: left; transition-delay: 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Singapore</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Edge Logic Hub</p>
+                    <p style="font-size: 0.8rem; margin-top: 1rem;"><i class="fa-solid fa-microchip"></i> 6k+ Active H100 Nodes</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Project Team Section -->
-    <section class="section" style="background: rgba(138, 125, 250, 0.01);">
+    <!-- Technical Leadership -->
+    <section class="section section-dark" style="background: rgba(138, 125, 250, 0.01);">
         <div class="container">
             <div class="section-header">
-                <span class="badge">The Minds Behind Flux</span>
-                <h2>Our <span class="gradient-text">Neural Engineers</span></h2>
+                <span class="badge">Team</span>
+                <h2>Architects of <span class="gradient-text">Intelligence</span></h2>
             </div>
             <div class="grid-3" style="margin-top: 4rem;">
-                <!-- Team Member 1 -->
-                <div class="team-card glass-panel reveal"
-                    style="padding: 0; overflow: hidden; text-align: center; border-radius: 30px;">
-                    <img src="assets/founder.webp" alt="Founder" style="width: 100%; height: 260px; object-fit: cover;">
-                    <div style="padding: 2.5rem;">
-                        <h3 style="margin-bottom: 0.5rem;">Jonathon Doe</h3>
-                        <p style="color: var(--primary); font-size: 0.9rem; margin-bottom: 1rem;">Founder & Chief
-                            Architect</p>
-                        <p style="color: var(--text-muted); font-size: 0.85rem;">Visionary behind the Flux-Core
-                            ecosystem and neural decentralization protocols.</p>
-                    </div>
+                <div class="glass-panel reveal" style="text-align: center; padding: 3rem;">
+                    <img src="assets/founder.webp" alt="Founder" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 1.5rem; object-fit: cover;">
+                    <h3>Dr. Sarah Flux</h3>
+                    <p style="color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase;">Founder & Chief Visionary</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Pioneer in decentralized neural architectures and cognitive ethical alignment.</p>
                 </div>
-                <!-- Team Member 2 -->
-                <div class="team-card glass-panel reveal"
-                    style="padding: 0; overflow: hidden; text-align: center; border-radius: 30px;">
-                    <img src="assets/developer.webp" alt="Developer"
-                        style="width: 100%; height: 260px; object-fit: cover;">
-                    <div style="padding: 2.5rem;">
-                        <h3 style="margin-bottom: 0.5rem;">Sarah Kovic</h3>
-                        <p style="color: var(--primary); font-size: 0.9rem; margin-bottom: 1rem;">Lead AI Developer</p>
-                        <p style="color: var(--text-muted); font-size: 0.85rem;">Specialist in transformer models and
-                            regenerative AI scaling architectures.</p>
-                    </div>
+                <div class="glass-panel reveal" style="text-align: center; padding: 3rem; transition-delay: 0.1s;">
+                    <img src="assets/developer.webp" alt="Developer" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 1.5rem; object-fit: cover;">
+                    <h3>Marcus Vane</h3>
+                    <p style="color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase;">Lead Neural Architect</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Specializing in high-concurrency node synchronization and low-latency synthesis.</p>
                 </div>
-                <!-- Team Member 3 -->
-                <div class="team-card glass-panel reveal"
-                    style="padding: 0; overflow: hidden; text-align: center; border-radius: 30px;">
-                    <img src="assets/designer.webp" alt="Designer"
-                        style="width: 100%; height: 260px; object-fit: cover;">
-                    <div style="padding: 2.5rem;">
-                        <h3 style="margin-bottom: 0.5rem;">Dela</h3>
-                        <p style="color: var(--primary); font-size: 0.9rem; margin-bottom: 1rem;">Design Director</p>
-                        <p style="color: var(--text-muted); font-size: 0.85rem;">Architect of the emotive user
-                            interfaces and glassmorphism design language.</p>
-                    </div>
+                <div class="glass-panel reveal" style="text-align: center; padding: 3rem; transition-delay: 0.2s;">
+                    <img src="assets/designer.webp" alt="Designer" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 1.5rem; object-fit: cover;">
+                    <h3>Elena Rossi</h3>
+                    <p style="color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase;">Experience Lead</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Mapping human-AI interaction patterns for emotive and intuitive interface logic.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Vision Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Vision for the <span class="gradient-text">Next Decade</span></h2>
-                <p>We're not just building tools; we're building the infrastructure for the next generation of digital
-                    existence.</p>
-            </div>
-            <div class="grid-3" style="text-align: center;">
-                <div class="glass-panel reveal" style="padding: 3rem;">
-                    <h3>Accessibility</h3>
-                    <p style="color: var(--text-muted);">Making complex AI insights available to everyone, everywhere.
-                    </p>
-                </div>
-                <div class="glass-panel reveal" style="padding: 3rem;">
-                    <h3>Empathy</h3>
-                    <p style="color: var(--text-muted);">Developing systems that understand human sentiment more deeply.
-                    </p>
-                </div>
-                <div class="glass-panel reveal" style="padding: 3rem;">
-                    <h3>Autonomy</h3>
-                    <p style="color: var(--text-muted);">Self-correcting neural networks that minimize manual
-                        maintenance.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
+                <footer class="footer">
         <div class="container footer-grid">
+            <!-- Column 1: Brand -->
             <div class="footer-brand">
                 <div class="logo">
-                     <a href="404.html">
-                        <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img-footer">
+                     <a href="index.html">
+                        <img src="assets/stackly.webp" alt="Stackly" class="logo-img" style="height: 35px;">
                      </a>
                 </div>
-                <p>Synthesizing human desire with AI logic. Pushing the boundaries of emotive and cognitive search technologies since 2024.</p>
-                <div class="footer-social">
+                <p style="margin-top: 2rem; color: var(--text-muted); line-height: 1.8; font-size: 0.95rem; max-width: 320px;">
+                    Synthesizing human desire with AI logic. Join 50,000+ pioneers redefining the absolute boundaries of cognitive intelligence.
+                </p>
+                <div class="footer-social" style="display: flex; gap: 1rem; margin-top: 2.5rem;">
                     <a href="404.html" class="social-icon"><i class="fa-brands fa-discord"></i></a>
                     <a href="404.html" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="404.html" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="404.html" class="social-icon"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
-            <div class="footer-links">
-                <ul>
-                    <li><strong>Product</strong></li>
-                    <li><a href="404.html">Neural Engine</a></li>
-                    <li><a href="404.html">AI Features</a></li>
-                    <li><a href="404.html">Subscription</a></li>
+            
+            <!-- Column 2: Platform -->
+            <div class="footer-links-column">
+                <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 2rem; letter-spacing: 0.05em; font-weight: 700;">Platform</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1rem;"><a href="index.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Home Hub</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="about.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Genesis Story</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="features.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Neural Toolsets</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="services.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Enterprise Sol</a></li>
                 </ul>
             </div>
-            <div class="footer-links">
-                <ul>
-                    <li><strong>Company</strong></li>
-                    <li><a href="404.html">About Us</a></li>
-                    <li><a href="404.html">Contact Us</a></li>
-                    <li><a href="404.html">Privacy Policy</a></li>
+
+            <!-- Column 3: Global Offices -->
+            <div class="footer-links-column">
+                <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 2rem; letter-spacing: 0.05em; font-weight: 700;">Global Hubs</h4>
+                <ul style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                    <li style="margin-bottom: 1.5rem;">
+                        <span style="color: #fff; display: block; margin-bottom: 0.3rem;">Silicon Valley</span>
+                        101 Meta Way, Palo Alto, CA
+                    </li>
+                    <li style="margin-bottom: 1.5rem;">
+                        <span style="color: #fff; display: block; margin-bottom: 0.3rem;">Tokyo Sync</span>
+                        Roppongi Hills Mori Tower, Tokyo
+                    </li>
+                    <li>
+                        <span style="color: #fff; display: block; margin-bottom: 0.3rem;">Neural London</span>
+                        20 Fenchurch St, London
+                    </li>
                 </ul>
             </div>
-            <div class="footer-links">
-                <ul>
-                    <li><strong>Quick Links</strong></li>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="features.html">Features</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+
+            <!-- Column 4: Transmit -->
+            <div class="footer-links-column">
+                <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 2rem; letter-spacing: 0.05em; font-weight: 700;">Connect</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1rem;"><a href="contact.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Global Helpdesk</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="subscription.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Pricing Model</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="login.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Neural Portal</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="404.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">System Status</a></li>
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Stackly Systems. All rights reserved.</p>
+        
+                <div class="footer-bottom" style="margin-top: 6rem; padding-top: 3rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center;">
+            <div style="display: flex; gap: 2.5rem; margin-bottom: 0.5rem;">
+                <a href="#" style="color: var(--primary); text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; transition: 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Privacy Protocol</a>
+                <a href="#" style="color: var(--primary); text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; transition: 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Sync Terms</a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.8rem; letter-spacing: 0.05em; font-weight: 500;">&copy; 2026 STACKLY CORE. ALL RIGHTS RESERVED. ENGINEERING COGNITIVE FUTURES.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>

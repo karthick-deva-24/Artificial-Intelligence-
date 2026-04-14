@@ -8,31 +8,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=14">
     <style>
         .login-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; background: radial-gradient(circle at top right, rgba(138, 125, 250, 0.15), transparent); }
         .auth-card { max-width: 450px; width: 100%; padding: 3.5rem; text-align: center; }
-        .auth-tabs { display: flex; gap: 1rem; margin-bottom: 2.5rem; justify-content: center; }
-        .auth-tab { position: relative; padding: 0.5rem 1rem; cursor: pointer; color: var(--text-muted); font-weight: 600; transition: 0.3s; }
-        .auth-tab.active { color: var(--primary); }
-        .auth-tab.active::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--primary); }
-        
         .role-selector { display: flex; gap: 1rem; margin-bottom: 2rem; justify-content: center; }
         .role-option { border: 1px solid var(--border-color); padding: 0.8rem 1.5rem; border-radius: 12px; cursor: pointer; transition: 0.3s; flex: 1; font-weight: 500; }
         .role-option.active { border-color: var(--primary); background: rgba(138, 125, 250, 0.05); color: var(--primary); }
-        
-        .form-switch { display: none; }
-        .form-switch.active { display: block; animation: fadeIn 0.5s ease; }
-        
+        .form-switch { animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 576px) {
-            .login-page { padding: 2rem 1.5rem; align-items: center; }
-            .auth-card { padding: 2.5rem 1.5rem; }
-            .role-selector { gap: 0.5rem; }
-            .role-option { padding: 0.6rem 1rem; font-size: 0.9rem; }
-            h2 { font-size: 1.8rem !important; }
-        }
     </style>
 </head>
 <body>
@@ -50,7 +34,7 @@
                 <div class="loader-signal-bar"></div>
                 <div class="loader-signal-bar"></div>
                 <div class="loader-core">
-                    <img src="assets/stackly jpg.webp" alt="Loading" class="loader-logo logo-img">
+                    <img src="assets/stackly.webp" alt="Loading" class="loader-logo logo-img">
                 </div>
             </div>
             <div class="loader-bar-container">
@@ -60,13 +44,11 @@
         </div>
     </div>
 
-
-
-    <header class="header" style="background: transparent; border: none; backdrop-filter: none; -webkit-backdrop-filter: none;">
+    <header class="header" style="background: transparent; border: none; backdrop-filter: none;">
         <div class="nav container" style="justify-content: center;">
-            <div class="logo" style="flex: none;">
+            <div class="logo">
                 <a href="index.html">
-                    <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
+                    <img src="assets/stackly.webp" alt="Stackly" class="logo-img">
                 </a>
             </div>
         </div>
@@ -74,107 +56,46 @@
 
     <main class="login-page">
         <div class="auth-card glass-panel reveal">
-            <!-- Note: Tabs removed as per requirement, focus on unified login -->
             <div id="login-form-view" class="form-switch active">
                 <h2 style="margin-bottom: 1rem;">Welcome <span class="gradient-text">Back</span></h2>
                 <div class="role-selector">
                     <div class="role-option active" data-role="user">User</div>
                     <div class="role-option" data-role="admin">Admin</div>
                 </div>
-                <form>
+                <form id="loginForm">
                     <div class="form-group" style="text-align: left;">
                         <label>Email ID</label>
-                        <input type="email" placeholder="john@example.com" oninput="this.value = this.value.replace(/[0-9]/g, '')" required>
+                        <input type="email" id="email" placeholder="john@example.com" required>
                     </div>
                     <div class="form-group" style="text-align: left;">
                         <label>Password</label>
                         <input type="password" placeholder="••••••••" required>
                     </div>
                     <button type="submit" class="btn-primary-full">Authenticate &nbsp; <i class="fa-solid fa-arrow-right"></i></button>
-                    <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">Don't have an account? <a href="404.html" id="toggle-to-signup" style="color: var(--primary); font-weight: 600;">Create Account</a></p>
-                </form>
-            </div>
-
-            <!-- Signup View -->
-            <div id="signup-form-view" class="form-switch">
-                <h2 style="margin-bottom: 2rem;">Join the <span class="gradient-text">Neural Era</span></h2>
-                <form class="neural-form">
-                    <div class="form-group" style="text-align: left;">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="John Doe" required>
-                    </div>
-                    <div class="form-group" style="text-align: left;">
-                        <label>Email ID</label>
-                        <input type="email" placeholder="john@example.com" required>
-                    </div>
-                    <div class="form-group" style="text-align: left;">
-                        <label>Select Role</label>
-                        <div class="role-selector" style="margin-top: 0.5rem;">
-                            <div class="role-option active" data-role="user">User</div>
-                            <div class="role-option" data-role="admin">Admin</div>
-                        </div>
-                    </div>
-                    <div class="form-group" style="text-align: left;">
-                        <label>Create Password</label>
-                        <input type="password" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" class="btn-primary-full">Create Account</button>
-                    <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">Already a member? <a href="404.html" id="toggle-to-login" style="color: var(--primary); font-weight: 600;">Back to Login</a></p>
+                    <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">Don't have an account? <a href="#" style="color: var(--primary); font-weight: 600;">Create Account</a></p>
                 </form>
             </div>
         </div>
     </main>
 
-
-
     <script src="script.js"></script>
     <script>
-        const loginView = document.getElementById('login-form-view');
-        const signupView = document.getElementById('signup-form-view');
-        const linkToSignup = document.getElementById('toggle-to-signup');
-        const linkToLogin = document.getElementById('toggle-to-login');
-
         const roleOptions = document.querySelectorAll('.role-option');
-
-        // Toggle Views
-        const showSignup = (e) => {
-            if(e) e.preventDefault();
-            loginView.classList.remove('active');
-            signupView.classList.add('active');
-        }
-
-        const showLogin = (e) => {
-            if(e) e.preventDefault();
-            signupView.classList.remove('active');
-            loginView.classList.add('active');
-        }
-
-        if(linkToSignup) linkToSignup.addEventListener('click', showSignup);
-        if(linkToLogin) linkToLogin.addEventListener('click', showLogin);
-
-        // Role Selector for BOTH forms
         roleOptions.forEach(opt => {
             opt.addEventListener('click', () => {
-                // Find all options in the SAME section
-                const parent = opt.closest('.role-selector');
-                parent.querySelectorAll('.role-option').forEach(o => o.classList.remove('active'));
+                roleOptions.forEach(o => o.classList.remove('active'));
                 opt.classList.add('active');
             });
         });
 
-        // Role-Based Redirection Logic
-        const loginForm = document.querySelector('#login-form-view form');
+        const loginForm = document.getElementById('loginForm');
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const emailInput = loginForm.querySelector('input[type="email"]');
-            const activeRoleOption = document.querySelector('#login-form-view .role-option.active');
-            const activeRole = activeRoleOption.getAttribute('data-role');
-
-            // Store for dashboard display
+            const activeRole = document.querySelector('.role-option.active').getAttribute('data-role');
+            const userEmail = document.getElementById('email').value;
             localStorage.setItem('stackly_role', activeRole);
-            localStorage.setItem('stackly_email', emailInput.value);
-
-            // Visual feedback before redirect
+            localStorage.setItem('stackly_email', userEmail);
+            
             const submitBtn = loginForm.querySelector('button');
             submitBtn.innerHTML = "Authenticating Neural ID...";
 

@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('load', () => {
             setTimeout(() => {
                 preloader.classList.add('hidden');
-            }, 1500);
+            }, 500); // Reduced delay for faster transition
         });
     }
 });

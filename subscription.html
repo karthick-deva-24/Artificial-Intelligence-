@@ -1,116 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subscription Plans | Stackly</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .hero {
-            min-height: 55vh;
-            padding-top: 150px;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-        }
-
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .toggle-btn {
-            background: rgba(138, 125, 250, 0.1);
-            border: 1px solid var(--border-color);
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: 0.3s;
-            color: var(--text-muted);
-        }
-
-        .toggle-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .discount-badge {
-            background: #4ecdc4;
-            color: var(--bg-dark);
-            font-size: 0.7rem;
-            font-weight: 800;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-left: 5px;
-        }
-
-        .calc-box {
-            max-width: 600px;
-            margin: 4rem auto;
-            text-align: center;
-        }
-
-        .calc-input {
-            width: 100%;
-            height: 6px;
-            background: rgba(138, 125, 250, 0.2);
-            border-radius: 5px;
-            appearance: none;
-            outline: none;
-            margin: 2rem 0;
-        }
-
-        .calc-input::-webkit-slider-thumb {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        .comp-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 3rem;
-            text-align: center;
-        }
-
-        .comp-table th,
-        .comp-table td {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .comp-table th {
-            color: var(--primary);
-        }
-
-        .check {
-            color: #4ecdc4;
-            font-weight: bold;
-        }
-
-        .cross {
-            color: #ff6b6b;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css?v=14">
 </head>
-
 <body>
 
     <!-- Premium Preloader -->
@@ -126,7 +25,7 @@
                 <div class="loader-signal-bar"></div>
                 <div class="loader-signal-bar"></div>
                 <div class="loader-core">
-                    <img src="assets/stackly jpg.webp" alt="Loading" class="loader-logo logo-img">
+                    <img src="assets/stackly.webp" alt="Loading" class="loader-logo logo-img">
                 </div>
             </div>
             <div class="loader-bar-container">
@@ -140,16 +39,16 @@
         <nav class="nav container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
+                    <img src="assets/stackly.webp" alt="Stackly" class="logo-img">
                 </a>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="subscription.html" class="active">Subscription</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="about.html" class="nav-item">About</a></li>
+                <li><a href="features.html" class="nav-item">Features</a></li>
+                <li><a href="services.html" class="nav-item">Services</a></li>
+                <li><a href="subscription.html" class="nav-item active">Subscription</a></li>
+                <li><a href="contact.html" class="nav-item">Contact</a></li>
             </ul>
             <div class="nav-actions">
                 <a href="login.html" class="btn-primary">Login</a>
@@ -158,199 +57,102 @@
         </nav>
     </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu" id="mobile-menu">
-        <div class="mobile-menu-content">
-            <div class="mobile-menu-header">
-                <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img">
-                <button class="close-menu" id="close-menu-btn"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <ul class="mobile-nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="subscription.html">Subscription</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li style="margin-top: 2rem;"><a href="login.html" class="btn-primary-full">Login</a></li>
-            </ul>
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <span><i class="fa-solid fa-rocket"></i> Stackly Flux-Core 2.0 deployment in progress...</span>
+            <span><i class="fa-solid fa-bolt"></i> 200ms latency threshold achieved globally.</span>
+            <span><i class="fa-solid fa-lock"></i> New Zero-Trust Neural Hashing protocols active.</span>
+            <span><i class="fa-solid fa-mobile-screen-button"></i> Mobile App Beta coming soon - Q3 2026.</span>
         </div>
     </div>
 
-    <!-- Subscription Hero Section -->
     <section class="hero hero-small">
         <div class="container hero-content">
             <div class="badge">Premium Neural Tiers</div>
-            <h1 class="hero-title reveal">Choose Your <br><span class="gradient-text">AI Power Level <i class="fa-solid fa-bolt"></i></span></h1>
-            <p class="hero-subtitle reveal">Flexible neural plans designed for individual creators, world-class
-                developers, and scaling businesses.</p>
-
-            <div class="toggle-container reveal">
-                <button class="toggle-btn active">Monthly</button>
-                <button class="toggle-btn">Yearly</button>
+            <h1 class="hero-title reveal">Choose Your <br><span class="gradient-text">AI Power Level</span></h1>
+            <p class="hero-subtitle reveal">Flexible plans designed for individual creators and scaling businesses.</p>
+            
+            <div class="toggle-container reveal" style="margin-top: 3rem; display: flex; align-items: center; justify-content: center; gap: 1.5rem;">
+                <span class="toggle-label" style="font-weight: 600; color: var(--text-main);">Monthly</span>
+                <div class="price-toggle" id="price-toggle-btn" style="width: 60px; height: 30px; background: rgba(138, 125, 250, 0.2); border-radius: 30px; position: relative; cursor: pointer; transition: 0.3s;">
+                    <div class="toggle-ball" style="position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; background: var(--primary); border-radius: 50%; transition: 0.3s;"></div>
+                </div>
+                <span class="toggle-label" style="font-weight: 600; color: var(--text-muted);">Yearly <span class="badge" style="background: #4ecdc4; color: var(--bg-dark); font-size: 0.7rem; padding: 2px 8px; margin-left: 5px;">SAVE 20%</span></span>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Cards Section -->
+    <!-- Pricing Cards -->
     <section class="section">
-        <div class="container">
-            <div class="pricing-grid grid-3">
-
-                <!-- Free Plan -->
-                <div class="pricing-card glass-panel reveal" style="border-top: 4px solid #4ecdc4;">
-                    <h3 style="color: #4ecdc4;">Cognitive Core</h3>
-                    <div class="price">Free<span>/forever</span></div>
-                    <p style="margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-muted);">Perfect for light
-                        exploration and basic neural search.</p>
-                    <ul>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Limited AI Access</li>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Basic Generation Tools</li>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> 50 Daily Usage Limit</li>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Community Support</li>
-                    </ul>
-                    <button class="btn-outline"
-                        style="width: 100%; margin-top: 2rem; border-color: #4ecdc4; color: #4ecdc4;" onclick="window.location.href='404.html'">Start
-                        Free</button>
-                </div>
-
-                <!-- Pro Plan -->
-                <div class="pricing-card glass-panel featured reveal">
-                    <div class="popular-badge">MOST POPULAR</div>
-                    <h3 style="color: var(--primary);">Neural Prime Pro</h3>
-                    <div class="price">$49<span>/mo</span></div>
-                    <p style="margin-bottom: 2rem; font-size: 0.9rem; color: rgba(255,255,255,0.7);">Our powerhouse tier
-                        for professional creators and daily users.</p>
-                    <ul>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Unlimited AI Usage</li>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Priority Response Time</li>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> All Neural Tools Unlocked</li>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> 24/7 Dedicated Support</li>
-                    </ul>
-                    <button class="btn-primary-full" style="width: 100%; margin-top: 2rem;" onclick="window.location.href='404.html'">Upgrade Now</button>
-                </div>
-
-                <!-- Enterprise Plan -->
-                <div class="pricing-card glass-panel reveal" style="border-top: 4px solid var(--secondary);">
-                    <h3 style="color: var(--secondary);">Enterprise Flux</h3>
-                    <div class="price">Custom<span>/tier</span></div>
-                    <p style="margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-muted);">Bespoke neural clusters
-                        for high-frequency organizations.</p>
-                    <ul>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Custom AI Solutions</li>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Direct API Access</li>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Dedicated Neural Engineer</li>
-                        <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3"
-                                fill="none">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> White-label Integration</li>
-                    </ul>
-                    <button class="btn-outline"
-                        style="width: 100%; margin-top: 2rem; border-color: var(--secondary); color: var(--secondary);" onclick="window.location.href='404.html'">Contact
-                        Us</button>
-                </div>
-
+        <div class="container pricing-grid grid-3">
+            <div class="pricing-card glass-panel reveal" style="padding: 3rem; text-align: center;">
+                <h3 style="color: #4ecdc4;">Cognitive Core</h3>
+                <div class="price" style="font-size: 3rem; font-weight: 800; margin: 1.5rem 0;">Free<span>/forever</span></div>
+                <ul style="list-style: none; margin-bottom: 2rem; color: var(--text-muted);">
+                    <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: #4ecdc4;"></i> Limited AI Access</li>
+                    <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: #4ecdc4;"></i> Basic Generation</li>
+                </ul>
+                <a href="404.html" class="btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Start Free</a>
+            </div>
+            <div class="pricing-card glass-panel featured reveal" style="padding: 3.5rem; text-align: center; border: 2px solid var(--primary); position: relative;">
+                <div class="popular-badge" style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">MOST POPULAR</div>
+                <h3 style="color: var(--primary);">Neural Prime Pro</h3>
+                <div class="price" style="font-size: 3rem; font-weight: 800; margin: 1.5rem 0;">$49<span>/mo</span></div>
+                <ul style="list-style: none; margin-bottom: 2rem; color: var(--text-muted);">
+                    <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Unlimited AI Usage</li>
+                    <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Priority Synthesis</li>
+                    <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Advanced API</li>
+                </ul>
+                <a href="404.html" class="btn-primary-full" style="width: 100%; display: block; text-align: center; text-decoration: none;">Upgrade Now</a>
+            </div>
+            <div class="pricing-card glass-panel reveal" style="padding: 3rem; text-align: center;">
+                <h3 style="color: var(--secondary);">Enterprise Flux</h3>
+                <div class="price" style="font-size: 3rem; font-weight: 800; margin: 1.5rem 0;">Custom<span>/tier</span></div>
+                <ul style="list-style: none; margin-bottom: 2rem; color: var(--text-muted);">
+                    <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: var(--secondary);"></i> Custom AI Solutions</li>
+                    <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: var(--secondary);"></i> Dedicated Support</li>
+                    <li style="margin-bottom: 0.8rem;"><i class="fa-solid fa-check" style="color: var(--secondary);"></i> Full Node Access</li>
+                </ul>
+                <a href="404.html" class="btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Contact Us</a>
             </div>
         </div>
     </section>
 
-    <!-- Usage Calculator Section -->
+    <!-- Comparison Table -->
     <section class="section section-dark" style="background: rgba(138, 125, 250, 0.01);">
         <div class="container">
             <div class="section-header">
-                <span class="badge">Interactive Tool</span>
-                <h2>Find Your <span class="gradient-text">Perfect Balance</span></h2>
+                <span class="badge">Transparency</span>
+                <h2>Detailed <span class="gradient-text">Comparison</span></h2>
             </div>
-            <div class="calc-box glass-panel reveal" style="padding: 4rem;">
-                <h3>How many prompts per day?</h3>
-                <input type="range" class="calc-input" id="usageSlider" min="1" max="500" value="50">
-                <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary);" id="usageVal">50</div>
-                <div style="margin-top: 2rem; font-size: 1.1rem; font-weight: 600;" id="usageRec">“Based on your usage,
-                    we recommend <span style="color: #4ecdc4;">CORE</span> plan”</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Feature Comparison Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <span class="badge">Deep Dive</span>
-                <h2>Feature <span class="gradient-text">Comparison</span></h2>
-            </div>
-            <div class="glass-panel reveal no-scrollbar" style="padding: 3rem; overflow-x: auto;">
-                <table class="comp-table">
+            <div class="glass-panel reveal hide-scrollbar" style="overflow-x: auto; padding: 2rem; -webkit-overflow-scrolling: touch;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; min-width: 600px;">
                     <thead>
-                        <tr>
-                            <th style="text-align: left;">Neural Capability</th>
-                            <th>Free</th>
-                            <th>Pro</th>
-                            <th>Enterprise</th>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <th style="padding: 1.5rem;">Feature</th>
+                            <th style="padding: 1.5rem;">Free</th>
+                            <th style="padding: 1.5rem; color: var(--primary);">Pro</th>
+                            <th style="padding: 1.5rem;">Enterprise</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td style="text-align: left;">Text AI (Flux-Write)</td>
-                            <td class="check"><i class="fa-solid fa-check"></i></td>
-                            <td class="check"><i class="fa-solid fa-check"></i></td>
-                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 1.5rem;">Monthly Credits</td>
+                            <td style="padding: 1.5rem; color: var(--text-muted);">1,000</td>
+                            <td style="padding: 1.5rem; color: var(--primary);">Unlimited</td>
+                            <td style="padding: 1.5rem;">Custom</td>
                         </tr>
-                        <tr>
-                            <td style="text-align: left;">Image AI (Flux-Vision)</td>
-                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
-                            <td class="check"><i class="fa-solid fa-check"></i></td>
-                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 1.5rem;">Node Priority</td>
+                            <td style="padding: 1.5rem; color: var(--text-muted);">Low</td>
+                            <td style="padding: 1.5rem; color: var(--primary);">High</td>
+                            <td style="padding: 1.5rem;">Ultra (Dedicated)</td>
                         </tr>
-                        <tr>
-                            <td style="text-align: left;">Code AI (Flux-Code)</td>
-                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
-                            <td class="check"><i class="fa-solid fa-check"></i></td>
-                            <td class="check"><i class="fa-solid fa-check"></i></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">API Access</td>
-                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
-                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
-                            <td class="check"><i class="fa-solid fa-check"></i></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">Custom Fine-tuning</td>
-                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
-                            <td class="cross"><i class="fa-solid fa-xmark"></i></td>
-                            <td class="check"><i class="fa-solid fa-check"></i></td>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 1.5rem;">Processing Speed</td>
+                            <td style="padding: 1.5rem; color: var(--text-muted);">Standard</td>
+                            <td style="padding: 1.5rem; color: var(--primary);">2x Boost</td>
+                            <td style="padding: 1.5rem;">10x Boost</td>
                         </tr>
                     </tbody>
                 </table>
@@ -358,101 +160,195 @@
         </div>
     </section>
 
-    <!-- Special Offers Section -->
-    <section class="section section-dark"
-        style="background: rgba(138, 125, 250, 0.02); border-top: 1px solid var(--border-color);">
+    <!-- Subscription FAQ -->
+    <section class="section">
         <div class="container">
             <div class="section-header">
-                <span class="badge">Limited Offers</span>
-                <h2>Conversion <span class="gradient-text">Booster</span></h2>
+                <span class="badge">Enterprise Trust</span>
+                <h2>Trusted by <span class="gradient-text">Global Innovators</span></h2>
             </div>
-            <div class="grid-3" style="margin-top: 4rem; text-align: center;">
-                <div class="glass-panel reveal" style="padding: 3rem;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-gift"></i></div>
-                    <h3>7-Day Free Trial</h3>
-                    <p style="color: var(--text-muted);">Experience Pro features risk-free for an entire week.</p>
+            <div class="grid-4" style="margin-top: 4rem; text-align: center;">
+                <div class="reveal">
+                    <div style="font-size: 2rem; color: var(--primary); font-weight: 800;">50,000+</div>
+                    <p style="color: var(--text-muted); font-size: 0.8rem;">Teams Synced</p>
                 </div>
-                <div class="glass-panel reveal" style="padding: 3rem;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-sack-dollar"></i></div>
-                    <h3>20% Yearly Discount</h3>
-                    <p style="color: var(--text-muted);">Save big when you commit to our annual neural vision.</p>
+                <div class="reveal" style="transition-delay: 0.1s;">
+                    <div style="font-size: 2rem; color: var(--primary); font-weight: 800;">99.9%</div>
+                    <p style="color: var(--text-muted); font-size: 0.8rem;">Uptime Delta</p>
                 </div>
-                <div class="glass-panel reveal" style="padding: 3rem;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-gift"></i></div>
-                    <h3>Signup Bonus</h3>
-                    <p style="color: var(--text-muted);">Get 500 initial bonus credits when you join today.</p>
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <div style="font-size: 2rem; color: var(--primary); font-weight: 800;">PETABYTES</div>
+                    <p style="color: var(--text-muted); font-size: 0.8rem;">Data Synthesized</p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.3s;">
+                    <div style="font-size: 2rem; color: var(--primary); font-weight: 800;">GLOBAL</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">24/7 Deployment</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
+    <!-- Support Ecosystem -->
+    <section class="section section-dark" style="background: rgba(138, 125, 250, 0.01);">
+        <div class="container grid-2" style="align-items: center; gap: 6rem;">
+            <div class="reveal">
+                <span class="badge">Technical Support</span>
+                <h2>Dedicated <span class="gradient-text">Neural Assistance</span></h2>
+                <p style="color: var(--text-muted); margin-top: 1.5rem;">Every Pro and Enterprise plan includes direct access to our neural engineering cluster. We don't just provide tools; we provide the architecture to ensure your success.</p>
+                <div class="glass-panel" style="margin-top: 2.5rem; padding: 2rem;">
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <i class="fa-solid fa-headset" style="font-size: 1.5rem; color: var(--primary);"></i>
+                        <div>
+                            <h4 style="margin-bottom: 0.2rem;">Priority Response</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Sub-1 hour response times for Enterprise nodes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal">
+                <img src="assets/developer.webp" alt="Support Team" style="width: 100%; border-radius: 30px; border: 1px solid var(--border-color); box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription FAQ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Questions?</span>
+                <h2>Billing <span class="gradient-text">Protocols</span></h2>
+            </div>
+            <div class="grid-2" style="margin-top: 4rem; gap: 4rem;">
+                <div class="reveal">
+                    <h3>Can I cancel anytime?</h3>
+                    <p style="color: var(--text-muted); margin-top: 1rem;">Yes, you can terminate your neural sync at any time. Your credits will remains active until the end of your billing cycle.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.1s;">
+                    <h3>What are Neural Credits?</h3>
+                    <p style="color: var(--text-muted); margin-top: 1rem;">Credits represent the computational power consumed by your queries across our global cluster network.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Trust Bar -->
+    <section class="section" style="padding: 4rem 0; border-top: 1px solid var(--border-color);">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
+            <p style="color: var(--text-muted); font-size: 0.8rem; letter-spacing: 0.1rem; text-transform: uppercase; font-weight: 700;">Secured by Multi-Node Encryption Architecture</p>
+            <div style="display: flex; gap: 3rem; font-size: 2rem; opacity: 0.4;">
+                <i class="fa-brands fa-stripe"></i>
+                <i class="fa-brands fa-cc-mastercard"></i>
+                <i class="fa-brands fa-cc-visa"></i>
+                <i class="fa-brands fa-cc-paypal"></i>
+                <i class="fa-brands fa-cc-apple-pay"></i>
+            </div>
+        </div>
+    </section>
+
+                <footer class="footer">
         <div class="container footer-grid">
+            <!-- Column 1: Brand -->
             <div class="footer-brand">
                 <div class="logo">
-                     <a href="404.html">
-                        <img src="assets/stackly jpg.webp" alt="Stackly" class="logo-img-footer">
+                     <a href="index.html">
+                        <img src="assets/stackly.webp" alt="Stackly" class="logo-img" style="height: 35px;">
                      </a>
                 </div>
-                <p>Synthesizing human desire with AI logic. Pushing the boundaries of emotive and cognitive search technologies since 2024.</p>
-                <div class="footer-social">
+                <p style="margin-top: 2rem; color: var(--text-muted); line-height: 1.8; font-size: 0.95rem; max-width: 320px;">
+                    Synthesizing human desire with AI logic. Join 50,000+ pioneers redefining the absolute boundaries of cognitive intelligence.
+                </p>
+                <div class="footer-social" style="display: flex; gap: 1rem; margin-top: 2.5rem;">
                     <a href="404.html" class="social-icon"><i class="fa-brands fa-discord"></i></a>
                     <a href="404.html" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="404.html" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="404.html" class="social-icon"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
-            <div class="footer-links">
-                <ul>
-                    <li><strong>Product</strong></li>
-                    <li><a href="404.html">Neural Engine</a></li>
-                    <li><a href="404.html">AI Features</a></li>
-                    <li><a href="404.html">Subscription</a></li>
+            
+            <!-- Column 2: Platform -->
+            <div class="footer-links-column">
+                <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 2rem; letter-spacing: 0.05em; font-weight: 700;">Platform</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1rem;"><a href="index.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Home Hub</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="about.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Genesis Story</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="features.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Neural Toolsets</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="services.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Enterprise Sol</a></li>
                 </ul>
             </div>
-            <div class="footer-links">
-                <ul>
-                    <li><strong>Company</strong></li>
-                    <li><a href="404.html">About Us</a></li>
-                    <li><a href="404.html">Contact Us</a></li>
-                    <li><a href="404.html">Privacy Policy</a></li>
+
+            <!-- Column 3: Global Offices -->
+            <div class="footer-links-column">
+                <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 2rem; letter-spacing: 0.05em; font-weight: 700;">Global Hubs</h4>
+                <ul style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                    <li style="margin-bottom: 1.5rem;">
+                        <span style="color: #fff; display: block; margin-bottom: 0.3rem;">Silicon Valley</span>
+                        101 Meta Way, Palo Alto, CA
+                    </li>
+                    <li style="margin-bottom: 1.5rem;">
+                        <span style="color: #fff; display: block; margin-bottom: 0.3rem;">Tokyo Sync</span>
+                        Roppongi Hills Mori Tower, Tokyo
+                    </li>
+                    <li>
+                        <span style="color: #fff; display: block; margin-bottom: 0.3rem;">Neural London</span>
+                        20 Fenchurch St, London
+                    </li>
                 </ul>
             </div>
-            <div class="footer-links">
-                <ul>
-                    <li><strong>Quick Links</strong></li>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="features.html">Features</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+
+            <!-- Column 4: Transmit -->
+            <div class="footer-links-column">
+                <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 2rem; letter-spacing: 0.05em; font-weight: 700;">Connect</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1rem;"><a href="contact.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Global Helpdesk</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="subscription.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Pricing Model</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="login.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">Neural Portal</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="404.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 0.9rem;">System Status</a></li>
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Stackly Systems. All rights reserved.</p>
+        
+                <div class="footer-bottom" style="margin-top: 6rem; padding-top: 3rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center;">
+            <div style="display: flex; gap: 2.5rem; margin-bottom: 0.5rem;">
+                <a href="#" style="color: var(--primary); text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; transition: 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Privacy Protocol</a>
+                <a href="#" style="color: var(--primary); text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; transition: 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Sync Terms</a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.8rem; letter-spacing: 0.05em; font-weight: 500;">&copy; 2026 STACKLY CORE. ALL RIGHTS RESERVED. ENGINEERING COGNITIVE FUTURES.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
-        const slider = document.getElementById('usageSlider');
-        const usageVal = document.getElementById('usageVal');
-        const usageRec = document.getElementById('usageRec');
-
-        slider.addEventListener('input', (e) => {
-            const val = e.target.value;
-            usageVal.textContent = val;
-
-            if (val < 50) {
-                usageRec.innerHTML = '“Based on your usage, we recommend <span style="color: #4ecdc4;">CORE</span> plan”';
-            } else if (val < 300) {
-                usageRec.innerHTML = '“Based on your usage, we recommend <span style="color: var(--primary);">PRO</span> plan”';
+        const toggleBtn = document.getElementById('price-toggle-btn');
+        const toggleBall = toggleBtn.querySelector('.toggle-ball');
+        const labels = document.querySelectorAll('.toggle-label');
+        const priceValues = document.querySelectorAll('.price');
+        
+        // --- Preloader Removal ---
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                }, 500); // Reduced delay for snappier feel
+            });
+        }
+        
+        let isYearly = false;
+        
+        toggleBtn.addEventListener('click', () => {
+            isYearly = !isYearly;
+            
+            if(isYearly) {
+                toggleBall.style.left = '33px';
+                labels[0].style.color = 'var(--text-muted)';
+                labels[1].style.color = 'var(--text-main)';
+                priceValues[1].innerHTML = '$470<span>/yr</span>';
             } else {
-                usageRec.innerHTML = '“Based on your usage, we recommend <span style="color: var(--secondary);">ENTERPRISE</span> plan”';
+                toggleBall.style.left = '3px';
+                labels[0].style.color = 'var(--text-main)';
+                labels[1].style.color = 'var(--text-muted)';
+                priceValues[1].innerHTML = '$49<span>/mo</span>';
             }
         });
     </script>
 </body>
-
 </html>
