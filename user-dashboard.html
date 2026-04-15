@@ -28,10 +28,13 @@
             .dash-hamburger { display: flex !important; }
             .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; z-index: 10000; }
             .sidebar.active { transform: translateX(0); }
-            .main-content { margin-left: 0; padding: 1.5rem; width: 100vw; overflow-x: hidden; box-sizing: border-box; }
+            .main-content { margin-left: 0; padding: 1rem; width: 100%; overflow-x: hidden; box-sizing: border-box; }
             header { flex-direction: column !important; align-items: flex-start !important; gap: 1.5rem; }
-            header > div { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
-            .grid-3 { grid-template-columns: 1fr; gap: 1rem; }
+            header > div { flex-direction: row !important; align-items: center !important; flex-wrap: wrap; gap: 1rem !important; width: 100%; }
+            .grid-3, .grid-2 { grid-template-columns: 1fr !important; gap: 1rem; }
+            h1 { font-size: 2rem !important; }
+            .stat-card p { font-size: 2rem !important; }
+            .dashboard-content canvas, .dashboard-content table { display: block; overflow-x: auto; white-space: nowrap; }
         }
     </style>
 </head>
@@ -83,7 +86,7 @@
                     </div>
                     <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 700;" class="user-avatar-initial">U</div>
                 </div>
-                <a href="login.html" class="glass-panel" style="padding: 0.8rem 1.2rem; color: #ff6b6b; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: 0.3s;" onmouseover="this.style.background='rgba(255, 107, 107, 0.1)'" onmouseout="this.style.background='var(--panel-bg)'">
+                <a href="login.html" onclick="localStorage.clear();" class="glass-panel" style="padding: 0.8rem 1.2rem; color: #ff6b6b; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: 0.3s;" onmouseover="this.style.background='rgba(255, 107, 107, 0.1)'" onmouseout="this.style.background='var(--panel-bg)'">
                     <i class="fa-solid fa-right-from-bracket"></i> Logout
                 </a>
             </div>
@@ -127,7 +130,7 @@
                     <div style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem;"><div style="width: 8px; height: 8px; background: #4ecdc4; border-radius: 50%;"></div> Synthesis</div>
                 </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2rem; align-items: flex-end; height: 180px; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+            <div style="display: grid; grid-template-columns: repeat(7, minmax(30px, 1fr)); gap: 0.5rem; align-items: flex-end; height: 180px; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; overflow-x: auto;">
                 <div style="display: flex; flex-direction: column; gap: 4px; height: 100%; justify-content: flex-end;">
                     <div style="height: 60%; width: 100%; background: var(--primary); border-radius: 4px; opacity: 0.8;"></div>
                     <div style="height: 20%; width: 100%; background: #4ecdc4; border-radius: 4px; opacity: 0.8;"></div>
@@ -142,7 +145,7 @@
                 <div style="height: 70%; width: 100%; background: var(--primary); border-radius: 4px; opacity: 0.8;"></div>
                 <div style="height: 85%; width: 100%; background: var(--primary); border-radius: 4px; opacity: 0.8;"></div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2rem; text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;">
+            <div style="display: grid; grid-template-columns: repeat(7, minmax(30px, 1fr)); gap: 0.5rem; text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; overflow-x: auto;">
                 <div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div><div>SUN</div>
             </div>
         </div>
@@ -191,9 +194,9 @@
                 <h2>Sync History</h2>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 2rem; text-align: left;">
                     <tr style="border-bottom: 1px solid var(--border-color);">
-                        <th style="padding: 1rem 0;">Date</th>
-                        <th style="padding: 1rem 0;">Operation</th>
-                        <th style="padding: 1rem 0;">Status</th>
+                        <th style="padding: 1rem; min-width: 120px;">Date</th>
+                        <th style="padding: 1rem; min-width: 150px;">Operation</th>
+                        <th style="padding: 1rem;">Status</th>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                         <td style="padding: 1rem 0; color: var(--text-muted);">Today, 10:45 AM</td>
@@ -248,8 +251,8 @@
         <div id="keys-tab" class="dashboard-content" style="display: none;">
              <div class="glass-panel" style="padding: 3rem;">
                 <h2>API Credentials</h2>
-                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px dashed var(--primary); display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family: monospace; letter-spacing: 2px;">sk_live_stackly_xxxxxxxxxxxxxxxxx</span>
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px dashed var(--primary); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <span style="font-family: monospace; letter-spacing: 2px; word-break: break-all;">sk_live_stackly_xxxxxxxxxxxxxxxxx</span>
                     <button class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="window.location.href='404.html'">Copy Key</button>
                 </div>
             </div>

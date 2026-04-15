@@ -1281,6 +1281,10 @@ flex-shrink: 0;
         align-items: center;
     }
 
+    .hero-cta .btn-primary-large {
+        margin-left: 0 !important;
+    }
+
     .btn-outline {
         margin-left: 0 !important;
     }
@@ -1465,6 +1469,7 @@ body:has(.news-ticker) .header {
     .hero-title { font-size: 2.6rem; line-height: 1.2; }
     .hero-subtitle { font-size: 1rem; }
     .hero-cta { flex-direction: column; align-items: center; gap: 1rem; }
+    .hero-cta .btn-primary-large { margin-left: 0 !important; }
     .btn-outline { margin-left: 0 !important; }
 
     /* Fix Dashboard UI layout on mobile */
@@ -1520,6 +1525,24 @@ body:has(.news-ticker) .header {
     }
 
     .trust-bar { flex-wrap: wrap; gap: 2rem; justify-content: center; }
+
+    /* Flex containers must wrap on mobile */
+    .glass-panel[style*="display: flex"],
+    .glass-panel > div[style*="display: flex"] {
+        flex-wrap: wrap !important;
+    }
+
+    /* glass-panel must not clip text on mobile */
+    .glass-panel {
+        overflow: visible !important;
+    }
+    /* Keep overflow hidden only for panels with images */
+    .glass-panel[style*="overflow: hidden"],
+    .service-card.glass-panel,
+    .hero-dashboard.glass-panel,
+    .image-wrapper.glass-panel {
+        overflow: hidden !important;
+    }
 }
 
 /* --- Small Mobile (<=576px) --- */
@@ -1786,12 +1809,13 @@ html, body {
 }
 
 /* ============================================
-   GLOBAL OVERFLOW NUCLEAR FIX
+   GLOBAL OVERFLOW FIX (Targeted)
    ============================================ */
 
-/* Prevent ALL elements from causing horizontal scroll */
-*, *::before, *::after {
+/* Only media elements get max-width constraint — NOT text/flex children */
+img, video, iframe, embed, object, svg, canvas {
     max-width: 100%;
+    height: auto;
 }
 
 /* Fix news ticker left cutoff */
@@ -1802,10 +1826,27 @@ html, body {
     box-sizing: border-box;
 }
 
-/* Ensure images are responsive everywhere */
-img {
-    max-width: 100%;
-    height: auto;
+/* Hero CTA base layout */
+.hero-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Mobile: All side-by-side flex sections must stack */
+@media (max-width: 768px) {
+    .glass-panel[style*="display: flex"][style*="align-items: center"][style*="gap: 4rem"] {
+        flex-direction: column !important;
+        gap: 2rem !important;
+        text-align: center;
+    }
+    .glass-panel[style*="display: flex"][style*="gap: 4rem"] img {
+        width: 150px !important;
+        height: 150px !important;
+        margin: 0 auto;
+    }
 }
 
 
