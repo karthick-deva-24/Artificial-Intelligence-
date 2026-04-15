@@ -21,7 +21,15 @@
         .dash-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .dash-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
         .dash-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-        @media (max-width: 768px) { .dash-hamburger { display: flex !important; } }
+        @media (max-width: 992px) {
+            .dash-hamburger { display: flex !important; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; z-index: 10000; }
+            .sidebar.active { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 1.5rem; width: 100vw; overflow-x: hidden; box-sizing: border-box; }
+            header { flex-direction: column !important; align-items: flex-start !important; gap: 1.5rem; }
+            header > div { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+            .grid-3 { grid-template-columns: 1fr; gap: 1rem; }
+        }
     </style>
 </head>
 <body class="dashboard">
@@ -139,22 +147,136 @@
             </div>
         </div>
         <div id="billing-tab" class="dashboard-content" style="display: none;">
-            <div class="glass-panel" style="padding: 3rem; text-align: center;">
-                <i class="fa-solid fa-file-invoice-dollar" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                <h2>Financial Operations</h2>
-                <p style="color: var(--text-muted); margin-top: 1rem;">Revenue analytics and subscription management restricted to super-admins.</p>
+            <div class="glass-panel" style="padding: 3rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                    <h2>Financial Operations</h2>
+                    <button class="btn-primary" onclick="window.location.href='404.html'"><i class="fa-solid fa-download"></i> Export Report</button>
+                </div>
+                
+                <div class="grid-3" style="gap: 1.5rem; margin-bottom: 3rem;">
+                    <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 12px; background: rgba(0,0,0,0.2);">
+                        <h4 style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">Monthly Recurring Revenue</h4>
+                        <p style="font-size: 2.2rem; font-weight: 700; margin: 0.5rem 0;">$124,500</p>
+                        <span style="color: #4ade80; font-size: 0.8rem;"><i class="fa-solid fa-arrow-trend-up"></i> +8.4% from last month</span>
+                    </div>
+                    <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 12px; background: rgba(0,0,0,0.2);">
+                        <h4 style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">Active Subscriptions</h4>
+                        <p style="font-size: 2.2rem; font-weight: 700; margin: 0.5rem 0;">1,842</p>
+                        <span style="color: #4ade80; font-size: 0.8rem;"><i class="fa-solid fa-arrow-trend-up"></i> +42 signups this week</span>
+                    </div>
+                    <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 12px; background: rgba(0,0,0,0.2);">
+                        <h4 style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">Pending Payouts</h4>
+                        <p style="font-size: 2.2rem; font-weight: 700; margin: 0.5rem 0;">$18,200</p>
+                        <span style="color: var(--text-muted); font-size: 0.8rem;"><i class="fa-solid fa-clock"></i> Releasing in 2 days</span>
+                    </div>
+                </div>
+
+                <h3>Recent Invoices</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; text-align: left;">
+                    <tr style="border-bottom: 1px solid var(--border-color); color: var(--text-muted);">
+                        <th style="padding: 1rem 0; font-weight: 500;">Invoice ID</th>
+                        <th style="padding: 1rem 0; font-weight: 500;">Client</th>
+                        <th style="padding: 1rem 0; font-weight: 500;">Amount</th>
+                        <th style="padding: 1rem 0; font-weight: 500;">Status</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 1rem 0; font-family: monospace;">INV-2026-081</td>
+                        <td style="padding: 1rem 0;">CorpSystems Inc.</td>
+                        <td style="padding: 1rem 0; font-weight: 600;">$4,500.00</td>
+                        <td style="padding: 1rem 0;"><span style="background: rgba(74, 222, 128, 0.1); color: #4ade80; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem;">Paid</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 1rem 0; font-family: monospace;">INV-2026-082</td>
+                        <td style="padding: 1rem 0;">Neural Dynamics LLC</td>
+                        <td style="padding: 1rem 0; font-weight: 600;">$12,000.00</td>
+                        <td style="padding: 1rem 0;"><span style="background: rgba(255, 153, 0, 0.1); color: #ff9900; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem;">Processing</span></td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div id="security-tab" class="dashboard-content" style="display: none;">
             <div class="glass-panel" style="padding: 3rem;">
-                <h2>Zero-Trust Security Logs</h2>
-                <p>No recent anomalies detected across the global network.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                    <h2>Zero-Trust Security Logs</h2>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(74, 222, 128, 0.1); padding: 0.5rem 1rem; border-radius: 8px; color: #4ade80; font-size: 0.85rem; border: 1px solid rgba(74,222,128,0.2);">
+                        <i class="fa-solid fa-shield-halved"></i> System Secure Mode Active
+                    </div>
+                </div>
+
+                <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+                        <tr style="background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border-color);">
+                            <th style="padding: 1rem; font-weight: 500; color: var(--text-muted);">Timestamp</th>
+                            <th style="padding: 1rem; font-weight: 500; color: var(--text-muted);">Event Type</th>
+                            <th style="padding: 1rem; font-weight: 500; color: var(--text-muted);">IP / Location</th>
+                            <th style="padding: 1rem; font-weight: 500; color: var(--text-muted);">Severity</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 1rem; font-family: monospace; color: var(--text-muted);">10:42:05 UTC</td>
+                            <td style="padding: 1rem;">Admin Authentication Success</td>
+                            <td style="padding: 1rem;">192.168.1.41 (New York, US)</td>
+                            <td style="padding: 1rem;"><span style="color: #4ade80;"><i class="fa-solid fa-circle" style="font-size: 0.5rem; margin-right: 5px;"></i> Info</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 1rem; font-family: monospace; color: var(--text-muted);">10:15:33 UTC</td>
+                            <td style="padding: 1rem;">Database Backup Triggered</td>
+                            <td style="padding: 1rem;">Internal CRON (Server Node A)</td>
+                            <td style="padding: 1rem;"><span style="color: #4ade80;"><i class="fa-solid fa-circle" style="font-size: 0.5rem; margin-right: 5px;"></i> Info</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(255, 107, 107, 0.05);">
+                            <td style="padding: 1rem; font-family: monospace; color: var(--text-muted);">09:12:44 UTC</td>
+                            <td style="padding: 1rem; color: #ff6b6b;">Failed API Key Attempt</td>
+                            <td style="padding: 1rem;">45.22.19.102 (Unknown Proxy)</td>
+                            <td style="padding: 1rem;"><span style="color: #ff6b6b; font-weight: 600;"><i class="fa-solid fa-triangle-exclamation" style="margin-right: 5px;"></i> High</span></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem; font-family: monospace; color: var(--text-muted);">08:00:00 UTC</td>
+                            <td style="padding: 1rem;">SSL Certificate Rotated</td>
+                            <td style="padding: 1rem;">Automated System</td>
+                            <td style="padding: 1rem;"><span style="color: #ff9900;"><i class="fa-solid fa-circle" style="font-size: 0.5rem; margin-right: 5px;"></i> Medium</span></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="settings-admin-tab" class="dashboard-content" style="display: none;">
             <div class="glass-panel" style="padding: 3rem;">
                 <h2>Platform wide Settings</h2>
-                <p>Global variable configuration interface.</p>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Configure global policies, integrations, and administration protocols.</p>
+                
+                <div style="margin-top: 3rem; display: flex; flex-direction: column; gap: 2rem;">
+                    <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 12px; background: rgba(255,255,255,0.02); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem;"><i class="fa-solid fa-server" style="color: var(--primary); margin-right: 0.5rem;"></i> Global API Rate Limits</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Cap maximum synchronous queries per workspace to prevent overload.</p>
+                        </div>
+                        <select style="padding: 0.8rem 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.5); color: white; outline: none;">
+                            <option>10,000 req / min</option>
+                            <option selected>50,000 req / min</option>
+                            <option>Unlimited (Enterprise)</option>
+                        </select>
+                    </div>
+
+                    <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 12px; background: rgba(255,255,255,0.02); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem;"><i class="fa-brands fa-slack" style="color: #e01e5a; margin-right: 0.5rem;"></i> Slack Integration</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Route critical system alerts and downtime notices.</p>
+                        </div>
+                        <button class="btn-outline" style="padding: 0.5rem 1.5rem;" onclick="window.location.href='404.html'">Configure Webhook</button>
+                    </div>
+
+                    <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 12px; background: rgba(255,255,255,0.02); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem;"><i class="fa-solid fa-key" style="color: #fcd34d; margin-right: 0.5rem;"></i> Identity Provider (SSO)</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Enforce SAML or OAuth protocols for operator logins.</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span style="font-size: 0.8rem; color: #4ade80;">Active (Google Workspace)</span>
+                            <button class="btn-primary" style="padding: 0.5rem 1.5rem;" onclick="window.location.href='404.html'">Manage</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </main>

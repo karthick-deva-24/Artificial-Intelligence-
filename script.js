@@ -51,13 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Navigation Scroll Effect ---
     const header = document.querySelector('.header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
 
     // --- Form Handling ---
     const contactForm = document.getElementById('ai-contact-form');

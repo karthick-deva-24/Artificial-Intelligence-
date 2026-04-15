@@ -15,8 +15,13 @@
         .role-selector { display: flex; gap: 1rem; margin-bottom: 2rem; justify-content: center; }
         .role-option { border: 1px solid var(--border-color); padding: 0.8rem 1.5rem; border-radius: 12px; cursor: pointer; transition: 0.3s; flex: 1; font-weight: 500; }
         .role-option.active { border-color: var(--primary); background: rgba(138, 125, 250, 0.05); color: var(--primary); }
-        .form-switch { animation: fadeIn 0.5s ease; }
+        .form-switch { animation: fadeIn 0.5s ease; display: none; }
+        .form-switch.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+        .form-group input { width: 100%; padding: 0.8rem 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.2); color: white; outline: none; transition: 0.3s; font-family: inherit; }
+        .form-group input:focus { border-color: var(--primary); background: rgba(0,0,0,0.4); }
     </style>
 </head>
 <body>
@@ -56,6 +61,7 @@
 
     <main class="login-page">
         <div class="auth-card glass-panel reveal">
+            <!-- Login View -->
             <div id="login-form-view" class="form-switch active">
                 <h2 style="margin-bottom: 1rem;">Welcome <span class="gradient-text">Back</span></h2>
                 <div class="role-selector">
@@ -71,8 +77,50 @@
                         <label>Password</label>
                         <input type="password" placeholder="••••••••" required>
                     </div>
+                    <div style="text-align: right; margin-bottom: 1.5rem;">
+                        <a href="javascript:void(0)" onclick="switchView('forgot-form-view')" style="font-size: 0.85rem; color: var(--text-muted); transition: 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'">Forgot Password?</a>
+                    </div>
                     <button type="submit" class="btn-primary-full">Authenticate &nbsp; <i class="fa-solid fa-arrow-right"></i></button>
-                    <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">Don't have an account? <a href="#" style="color: var(--primary); font-weight: 600;">Create Account</a></p>
+                    <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">Don't have an account? <a href="javascript:void(0)" onclick="switchView('register-form-view')" style="color: var(--primary); font-weight: 600;">Create Account</a></p>
+                </form>
+            </div>
+
+            <!-- Register View -->
+            <div id="register-form-view" class="form-switch">
+                <h2 style="margin-bottom: 1rem;">Create <span class="gradient-text">Account</span></h2>
+                <div class="role-selector">
+                    <div class="role-option active" data-role="user">User</div>
+                    <div class="role-option" data-role="admin">Admin</div>
+                </div>
+                <form id="registerForm">
+                    <div class="form-group" style="text-align: left;">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="John Doe" pattern="[A-Za-z\s]+" oninvalid="this.setCustomValidity('Please fill this slot. Only letters allowed.')" oninput="this.setCustomValidity('')" required>
+                    </div>
+                    <div class="form-group" style="text-align: left;">
+                        <label>Email ID</label>
+                        <input type="email" placeholder="john@example.com" oninvalid="this.setCustomValidity('Please fill this slot with a valid email')" oninput="this.setCustomValidity('')" required>
+                    </div>
+                    <div class="form-group" style="text-align: left;">
+                        <label>Password</label>
+                        <input type="password" placeholder="••••••••" oninvalid="this.setCustomValidity('Please fill this slot')" oninput="this.setCustomValidity('')" required>
+                    </div>
+                    <button type="submit" class="btn-primary-full" style="margin-top: 1rem;">Sign Up &nbsp; <i class="fa-solid fa-user-plus"></i></button>
+                    <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">Already have an account? <a href="javascript:void(0)" onclick="switchView('login-form-view')" style="color: var(--primary); font-weight: 600;">Log In</a></p>
+                </form>
+            </div>
+
+            <!-- Forgot Password View -->
+            <div id="forgot-form-view" class="form-switch">
+                <h2 style="margin-bottom: 1rem;">Reset <span class="gradient-text">Password</span></h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Enter your email to receive a secure password reset link.</p>
+                <form id="forgotForm">
+                    <div class="form-group" style="text-align: left; margin-bottom: 2rem;">
+                        <label>Email ID</label>
+                        <input type="email" placeholder="john@example.com" oninvalid="this.setCustomValidity('Please fill this slot with a valid email')" oninput="this.setCustomValidity('')" required>
+                    </div>
+                    <button type="submit" class="btn-primary-full">Send Reset Link &nbsp; <i class="fa-solid fa-envelope"></i></button>
+                    <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);"><a href="javascript:void(0)" onclick="switchView('login-form-view')" style="color: var(--text-muted); font-weight: 600; transition: 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-solid fa-arrow-left"></i> Back to Login</a></p>
                 </form>
             </div>
         </div>
@@ -80,33 +128,71 @@
 
     <script src="script.js"></script>
     <script>
+        function switchView(viewId) {
+            document.querySelectorAll('.form-switch').forEach(el => {
+                el.classList.remove('active');
+            });
+            const view = document.getElementById(viewId);
+            if(view) {
+                view.classList.add('active');
+            }
+        }
+
         const roleOptions = document.querySelectorAll('.role-option');
         roleOptions.forEach(opt => {
             opt.addEventListener('click', () => {
-                roleOptions.forEach(o => o.classList.remove('active'));
+                const siblings = opt.closest('.role-selector').querySelectorAll('.role-option');
+                siblings.forEach(o => o.classList.remove('active'));
                 opt.classList.add('active');
             });
         });
 
         const loginForm = document.getElementById('loginForm');
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const activeRole = document.querySelector('.role-option.active').getAttribute('data-role');
-            const userEmail = document.getElementById('email').value;
-            localStorage.setItem('stackly_role', activeRole);
-            localStorage.setItem('stackly_email', userEmail);
-            
-            const submitBtn = loginForm.querySelector('button');
-            submitBtn.innerHTML = "Authenticating Neural ID...";
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const activeRole = loginForm.closest('.form-switch').querySelector('.role-option.active').getAttribute('data-role');
+                const userEmail = document.getElementById('email').value;
+                localStorage.setItem('stackly_role', activeRole);
+                localStorage.setItem('stackly_email', userEmail);
+                
+                const submitBtn = loginForm.querySelector('button');
+                submitBtn.innerHTML = "Authenticating Neural ID...";
 
-            setTimeout(() => {
-                if (activeRole === 'admin') {
-                    window.location.href = 'admin-dashboard.html';
-                } else {
-                    window.location.href = 'user-dashboard.html';
-                }
-            }, 1000);
-        });
+                setTimeout(() => {
+                    if (activeRole === 'admin') {
+                        window.location.href = 'admin-dashboard.html';
+                    } else {
+                        window.location.href = 'user-dashboard.html';
+                    }
+                }, 1000);
+            });
+        }
+
+        const registerForm = document.getElementById('registerForm');
+        if (registerForm) {
+            registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = registerForm.querySelector('button');
+                submitBtn.innerHTML = "Creating Identity...";
+                setTimeout(() => {
+                    submitBtn.innerHTML = "Sign Up &nbsp; <i class='fa-solid fa-user-plus'></i>";
+                    switchView('login-form-view');
+                }, 1000);
+            });
+        }
+
+        const forgotForm = document.getElementById('forgotForm');
+        if (forgotForm) {
+            forgotForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = forgotForm.querySelector('button');
+                submitBtn.innerHTML = "Sending Link...";
+                setTimeout(() => {
+                    window.location.href = '404.html';
+                }, 1000);
+            });
+        }
     </script>
 </body>
 </html>

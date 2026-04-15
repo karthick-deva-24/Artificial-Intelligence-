@@ -258,8 +258,14 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow-y: auto !important;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.mobile-menu-content::-webkit-scrollbar {
+    display: none;
 }
 
 .mobile-menu-header {
@@ -309,27 +315,11 @@ body {
     line-height: 1.6;
     opacity: 1;
     transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-body::-webkit-scrollbar {
-    display: none;
 }
 
 body.page-transit {
     opacity: 0;
     pointer-events: none;
-}
-
-/* Scrollbar Removal Utility */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-.no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 /* Base Styles */
@@ -1477,6 +1467,13 @@ body:has(.news-ticker) .header {
     .hero-cta { flex-direction: column; align-items: center; gap: 1rem; }
     .btn-outline { margin-left: 0 !important; }
 
+    /* Fix Dashboard UI layout on mobile */
+    .dashboard-inner { grid-template-columns: 1fr !important; }
+    .dashboard-sidebar { display: none !important; }
+    .hero-dashboard { min-height: auto !important; }
+    .dashboard-main { padding: 2rem !important; }
+    .dashboard-stats { grid-template-columns: 1fr !important; margin-top: 2rem !important; }
+    
     .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
 
     .footer-grid { grid-template-columns: 1fr !important; gap: 2rem; }
@@ -1503,6 +1500,12 @@ body:has(.news-ticker) .header {
         transition: left 0.4s ease !important;
         padding: 2rem !important;
         overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .sidebar::-webkit-scrollbar {
+        display: none;
     }
     .sidebar.active { left: 0 !important; }
 
@@ -1616,16 +1619,22 @@ html, body {
     /* All panels use full width — EXCEPT dashboard header controls */
     /* .glass-panel width override removed to prevent logout button hiding */
 
-    /* Tables: scoped scroll within the card */
+    /* Tables: scoped scroll within the card — scrollbar hidden */
     .glass-panel table {
         min-width: 480px;
     }
-    .glass-panel { overflow-x: auto !important; }
+    .glass-panel:has(table) {
+        overflow-x: auto !important;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .glass-panel:has(table)::-webkit-scrollbar {
+        display: none;
+    }
 
     /* Section containers full width */
     .section, .container {
         width: 100% !important;
-        overflow-x: hidden !important;
     }
 
     /* Hero: prevent overflow */
@@ -1785,12 +1794,6 @@ html, body {
     max-width: 100%;
 }
 
-/* Sections must never overflow */
-section, .section, .container, header, footer, main, aside {
-    max-width: 100vw;
-    overflow-x: hidden;
-}
-
 /* Fix news ticker left cutoff */
 .news-ticker {
     left: 0 !important;
@@ -1805,19 +1808,12 @@ img {
     height: auto;
 }
 
-/* Hard stop on body */
-body {
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
-}
-
 
 /* ============================================
-   SCROLLBAR CONTROL — One scrollbar only
+   SCROLLBAR CONTROL — Single scrollbar system
    ============================================ */
 
-/* Only html controls the main vertical scroll */
+/* html is the ONLY visible scroll container */
 html {
     overflow-y: auto;
     overflow-x: hidden;
@@ -1832,13 +1828,13 @@ html::-webkit-scrollbar-thumb {
     border-radius: 10px;
 }
 
-/* Body itself should NOT create its own scroll area */
+/* Body does NOT create its own scroll area */
 body {
     overflow: hidden;
     min-height: 100%;
 }
 
-/* ALL inner elements — hide their scrollbars completely */
+/* Hide ALL inner element scrollbars — prevents ghost scroll containers */
 *:not(html)::-webkit-scrollbar {
     display: none !important;
     width: 0 !important;
@@ -1850,24 +1846,9 @@ body {
     -ms-overflow-style: none !important;
 }
 
-/* Re-allow body content to flow and trigger html scroll */
-body > * {
-    overflow-x: hidden;
-}
-
 /* ============================================
    MOBILE MENU — Login Button Always Visible
    ============================================ */
-
-/* Override global scrollbar-hiding for mobile menu so it can scroll */
-.mobile-menu-content::-webkit-scrollbar {
-    display: block !important;
-    width: 0 !important;
-}
-.mobile-menu-content {
-    scrollbar-width: none !important;
-    overflow-y: auto !important;
-}
 
 /* Shorter screens — reduce spacing so Login stays visible */
 @media (max-height: 700px) {
